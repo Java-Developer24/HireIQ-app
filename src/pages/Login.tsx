@@ -80,15 +80,8 @@ const Login = () => {
     <div className="min-h-screen bg-cream grid-bg">
       <div className="container py-12">
         <Link to="/" className="inline-block mb-10"><HireIqLogo /></Link>
-        <div className="grid lg:grid-cols-2 gap-8 justify-items-center">
-          <div className="flex flex-col items-center">
-            <span className="mb-3 text-[11px] uppercase tracking-wider text-ink-muted font-semibold">Default state</span>
-            <LoginCard />
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="mb-3 text-[11px] uppercase tracking-wider text-ink-muted font-semibold">Error state</span>
-            <LoginCard error />
-          </div>
+        <div className="flex justify-center">
+          <LoginCard />
         </div>
         <p className="mt-10 text-center text-xs text-ink-muted">Trusted by 500+ recruiting teams</p>
       </div>
