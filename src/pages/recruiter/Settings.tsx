@@ -72,7 +72,7 @@ const Settings = () => {
                   <div className="flex-1 space-y-4">
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold text-ink uppercase tracking-tight">Company name</label>
-                      <input type="text" defaultValue="Data Panther Solutions" className="w-full h-11 px-4 rounded-xl border border-ink/10 bg-white text-sm focus:outline-none transition" />
+                      <input type="text" defaultValue=" HireIQ Partner Solutions" className="w-full h-11 px-4 rounded-xl border border-ink/10 bg-white text-sm focus:outline-none transition" />
                     </div>
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold text-ink uppercase tracking-tight">Tagline</label>

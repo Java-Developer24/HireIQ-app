@@ -52,7 +52,7 @@ const PracticeQuestion = () => {
           </div>
         </div>
         <div className="text-xs font-bold text-ink-muted">
-          Senior Backend Engineer — Data Panther Solutions
+          Senior Backend Engineer —  HireIQ Partner Solutions
         </div>
       </div>
 

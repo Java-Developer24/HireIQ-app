@@ -26,7 +26,7 @@ const SubmissionDone = () => {
                 <div className="space-y-1">
                   <h1 className="text-2xl font-display font-bold text-ink tracking-tight">You're all done, Jordan!</h1>
                   <p className="text-[13px] text-ink-muted leading-relaxed max-w-[340px] mx-auto">
-                    Your responses have been submitted for <span className="font-bold text-ink">Senior Backend Engineer</span> at <span className="font-bold text-ink">Data Panther Solutions</span>.
+                    Your responses have been submitted for <span className="font-bold text-ink">Senior Backend Engineer</span> at <span className="font-bold text-ink"> HireIQ Partner Solutions</span>.
                   </p>
                 </div>
               </div>

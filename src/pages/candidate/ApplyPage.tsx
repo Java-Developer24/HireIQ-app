@@ -34,7 +34,7 @@ const ApplyPage = () => {
             </div>
             <div className="pt-4 space-y-4">
               <Link to="/device-check" className="w-full h-12 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-forest-deep transition shadow-lg shadow-[#0D1829]/10">
-                Proceed to interview <ArrowRight className="h-4 w-4" />
+                Proceed to Assessment <ArrowRight className="h-4 w-4" />
               </Link>
               <p className="text-[11px] text-ink-muted/60">Check your inbox — including spam folder.</p>
             </div>
@@ -72,8 +72,8 @@ const ApplyPage = () => {
                 <div className="absolute top-4 left-0 right-0 h-px bg-ink/10 -translate-y-1/2 z-0" />
                 {[
                   { step: 1, label: "Apply", active: true },
-                  { step: 2, label: "Video interview" },
-                  { step: 3, label: "Assessment" },
+                  { step: 2, label: "Assessment" },
+                  { step: 3, label: "Video interview" },
                   { step: 4, label: "Result" }
                 ].map((s) => (
                   <div key={s.step} className="relative z-10 flex flex-col items-center gap-2">
@@ -177,7 +177,7 @@ const ApplyPage = () => {
               <Lock className="h-3 w-3" />
               <span>Your data is encrypted and stored securely</span>
             </div>
-            <p>© 2024 Data Panther Solutions · Powered by HireIQ</p>
+            <p>© 2024  HireIQ Partner Solutions · Powered by HireIQ</p>
           </div>
         </div>
       </div>

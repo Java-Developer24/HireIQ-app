@@ -1,5 +1,5 @@
 import { RecruiterLayout } from "@/components/layout/RecruiterLayout";
-import { Search, MapPin, Clock, Briefcase, MoreHorizontal, Link as LinkIcon, Plus, Grid, List as ListIcon } from "lucide-react";
+import { Search, MapPin, Clock, Briefcase, MoreHorizontal, Link as LinkIcon, Plus, Grid, List as ListIcon, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   DropdownMenu,

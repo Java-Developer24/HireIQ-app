@@ -23,7 +23,7 @@ export const Footer = () => (
         <FooterCol title="Legal" links={["Privacy", "Terms", "DPA", "Security"]} />
       </div>
       <div className="mt-14 pt-6 border-t border-ink/10 text-xs text-ink-muted text-center">
-        © 2025 HireIQ · Built by Data Panther Solutions · Hyderabad, India
+        © 2025 HireIQ · Built by  HireIQ Partner Solutions · Hyderabad, India
       </div>
     </div>
   </footer>

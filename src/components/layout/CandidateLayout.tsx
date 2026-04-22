@@ -5,7 +5,7 @@ import { LogOut, MapPin, Clock } from "lucide-react";
 export const CandidateLayout = ({
   children,
   showLogo = true,
-  companyName = "Data Panther Solutions",
+  companyName = " HireIQ Partner Solutions",
   className = "bg-cream",
   hideHeader = false,
 }: {
