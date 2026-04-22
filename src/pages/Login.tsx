@@ -13,7 +13,7 @@ const LoginCard = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (email === "recruiter@hireiq.com" && password === "hireiq123") {
-      navigate("/dashboard");
+      navigate("/onboarding");
     } else if (email === "candidate@hireiq.com" && password === "hireiq123") {
       navigate("/apply/1");
     } else {

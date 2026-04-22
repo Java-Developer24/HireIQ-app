@@ -57,7 +57,7 @@ export const RecruiterLayout = ({ children, title, showNewJobButton = true }: { 
         <div className="border-t border-cream/10 pt-2 px-2 flex items-center gap-2">
           <div className="h-8 w-8 rounded-full bg-lime text-forest flex items-center justify-center text-xs font-bold flex-none">AZ</div>
           <div className="min-w-0 flex-1">
-            <div className="text-xs font-semibold text-cream truncate">Azeem</div>
+            <div className="text-xs font-semibold text-cream truncate">Alex</div>
             <div className="text-[10px] text-cream/50 truncate">Acme Corp · Admin</div>
           </div>
           <ChevronDown className="h-3.5 w-3.5 text-cream/40" />
@@ -81,13 +81,13 @@ export const RecruiterLayout = ({ children, title, showNewJobButton = true }: { 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="inline-flex items-center gap-2 h-9 px-2 rounded-lg hover:bg-cream/60 transition focus:outline-none">
-                  <span className="text-xs font-bold text-ink">Azeem</span>
+                  <span className="text-xs font-bold text-ink">Alex</span>
                   <div className="h-7 w-7 rounded-full bg-forest text-cream flex items-center justify-center text-[10px] font-bold shadow-sm">AZ</div>
                   <ChevronDown className="h-3.5 w-3.5 text-ink-muted" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 rounded-xl border-ink/10 shadow-xl">
-                <DropdownMenuLabel className="text-[10px] uppercase tracking-widest text-ink-muted font-bold">Azeem Account</DropdownMenuLabel>
+                <DropdownMenuLabel className="text-[10px] uppercase tracking-widest text-ink-muted font-bold">Alex Account</DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-ink/5" />
                 <DropdownMenuItem className="text-xs font-medium py-2.5 cursor-pointer rounded-lg">Profile Settings</DropdownMenuItem>
                 <DropdownMenuItem className="text-xs font-medium py-2.5 cursor-pointer rounded-lg">Billing & Usage</DropdownMenuItem>

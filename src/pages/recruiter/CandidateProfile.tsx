@@ -12,9 +12,10 @@ import {
   Play,
   Clock,
   MessageSquare,
-  FileText
+  FileText,
+  ArrowLeft
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
 
 const ScoreBar = ({ label, value, color = "bg-forest" }: { label: string; value: number; color?: string }) => (
@@ -30,26 +31,35 @@ const ScoreBar = ({ label, value, color = "bg-forest" }: { label: string; value:
 );
 
 const CandidateProfile = () => {
+  const navigate = useNavigate();
   return (
     <RecruiterLayout title="Candidate Profile" showNewJobButton={false}>
-      <div className="p-8 space-y-6">
+      <div className="p-6 space-y-5">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs font-semibold text-ink-muted">
-          <Link to="/jobs" className="hover:text-forest transition">Jobs</Link>
-          <ChevronRight className="h-3 w-3" />
-          <Link to="/jobs/1/pipeline" className="hover:text-forest transition">Senior Backend Engineer</Link>
-          <ChevronRight className="h-3 w-3" />
-          <span className="text-ink">Priya Mehta</span>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate("/jobs/1/pipeline")}
+            className="h-8 w-8 rounded-lg border border-ink/10 flex items-center justify-center text-ink-muted hover:text-ink hover:bg-white transition shadow-sm"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <div className="flex items-center gap-2 text-xs font-bold text-ink-muted uppercase tracking-wider">
+            <Link to="/jobs" className="hover:text-forest transition">Jobs</Link>
+            <ChevronRight className="h-3 w-3" />
+            <Link to="/jobs/1/pipeline" className="hover:text-forest transition">Senior Backend Engineer</Link>
+            <ChevronRight className="h-3 w-3" />
+            <span className="text-ink">Jordan Mehta</span>
+          </div>
         </div>
 
         {/* Header Card */}
         <div className="bg-white border border-ink/10 rounded-[24px] p-6 shadow-sm flex items-center justify-between">
           <div className="flex items-center gap-5">
             <div className="h-16 w-16 rounded-full bg-[#E5F9F1] text-[#00CC88] flex items-center justify-center text-xl font-bold">
-              PM
+              JS
             </div>
             <div className="space-y-1">
-              <h1 className="text-2xl font-display font-bold text-ink leading-tight">Priya Mehta</h1>
+              <h1 className="text-2xl font-display font-bold text-ink leading-tight">Jordan Mehta</h1>
               <div className="flex items-center gap-4 text-sm text-ink-muted">
                 <span className="flex items-center gap-1.5"><Mail className="h-3.5 w-3.5" /> priya.mehta@email.com</span>
                 <span className="flex items-center gap-1.5"><Phone className="h-3.5 w-3.5" /> +91 98765 43210</span>
@@ -121,7 +131,7 @@ const CandidateProfile = () => {
               <div className="flex items-start gap-4">
                 <div className="px-4 py-1.5 rounded-lg bg-[#E5F9F1] text-[#00CC88] text-xs font-black tracking-wider shrink-0 mt-1">SHORTLIST</div>
                 <p className="text-[13px] text-ink leading-relaxed font-medium">
-                  Priya demonstrates strong Python and API development experience closely matching role requirements. 5 years at TechCo included direct GCP stack work. One gap: no Kubernetes mention, though Docker experience suggests adaptability.
+                  Jordan demonstrates strong Python and API development experience closely matching role requirements. 5 years at TechCo included direct GCP stack work. One gap: no Kubernetes mention, though Docker experience suggests adaptability.
                 </p>
               </div>
 
@@ -179,9 +189,17 @@ const CandidateProfile = () => {
                     <span className="h-4 px-1 rounded bg-[#E8EDFF] text-[#2D5BFF] text-[8px] font-bold flex items-center">BEHAVIOURAL</span>
                     <span className="text-[11px] font-bold text-ink">Q1: Debugging production issues</span>
                   </div>
-                  <div className="aspect-video bg-ink rounded-xl relative flex items-center justify-center overflow-hidden group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" className="absolute inset-0 w-full h-full object-cover opacity-60" alt="Video preview" />
-                    <div className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition duration-300">
+                  <div className="aspect-video bg-ink rounded-xl relative flex items-center justify-center overflow-hidden group cursor-pointer shadow-lg border border-white/5">
+                    <video
+                      src="https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-his-laptop-34444-large.mp4"
+                      className="absolute inset-0 w-full h-full object-cover opacity-60"
+                      poster="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
+                      onMouseOver={(e) => e.currentTarget.play()}
+                      onMouseOut={(e) => e.currentTarget.pause()}
+                      muted
+                      loop
+                    />
+                    <div className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition duration-300 pointer-events-none z-10">
                       <Play className="h-5 w-5 text-white fill-current" />
                     </div>
                     <div className="absolute bottom-3 inset-x-3 h-1 bg-white/30 rounded-full">

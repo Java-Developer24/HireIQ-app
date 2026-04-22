@@ -10,7 +10,8 @@ import {
   LayoutGrid,
   List,
   AlertCircle,
-  Clock
+  Clock,
+  ArrowLeft
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -28,7 +29,7 @@ const PipelineView = () => {
   const [selectedCandidates, setSelectedCandidates] = useState<number[]>([]);
 
   const candidates = [
-    { id: 1, name: "Priya Mehta", initial: "PM", color: "bg-[#E5F9F1] text-[#00CC88]", score: 84, resume: 81, video: 88, stage: "Shortlisted", verdict: "SHORTLIST", verdictColor: "bg-[#E5F9F1] text-[#00CC88]", flags: 0, applied: "2d" },
+    { id: 1, name: "Jordan Mehta", initial: "JS", color: "bg-[#E5F9F1] text-[#00CC88]", score: 84, resume: 81, video: 88, stage: "Shortlisted", verdict: "SHORTLIST", verdictColor: "bg-[#E5F9F1] text-[#00CC88]", flags: 0, applied: "2d" },
     { id: 2, name: "Rahul Sharma", initial: "RS", color: "bg-[#E8EDFF] text-[#2D5BFF]", score: 77, resume: 74, video: 81, stage: "Shortlisted", verdict: "SHORTLIST", verdictColor: "bg-[#E5F9F1] text-[#00CC88]", flags: 0, applied: "3d" },
     { id: 3, name: "Sara Khan", initial: "SK", color: "bg-[#FFF4E5] text-[#FF9933]", score: 68, resume: 65, video: 72, stage: "HOLD", verdict: "HOLD", verdictColor: "bg-[#FFF4E5] text-[#FF9933]", flags: 1, applied: "1d" },
     { id: 4, name: "James Osei", initial: "JO", color: "bg-ink/5 text-ink-muted", score: 62, resume: 60, video: null, stage: "Video invited", verdict: "HOLD", verdictColor: "bg-[#FFF4E5] text-[#FF9933]", flags: 0, applied: "4d" },
@@ -45,18 +46,28 @@ const PipelineView = () => {
 
   return (
     <RecruiterLayout title="Pipeline">
-      <div className="p-8 space-y-6">
+      <div className="p-6 space-y-5">
         {/* Breadcrumb & Header */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-ink-muted">
-            <Link to="/jobs" className="hover:text-forest transition">Jobs</Link>
-            <ChevronRight className="h-3 w-3" />
-            <span className="text-ink">Senior Backend Engineer</span>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => navigate("/jobs")}
+                className="h-8 w-8 rounded-lg border border-ink/10 flex items-center justify-center text-ink-muted hover:text-ink hover:bg-white transition shadow-sm"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              <div className="flex items-center gap-2 text-xs font-bold text-ink-muted uppercase tracking-wider">
+                <Link to="/jobs" className="hover:text-forest transition">Jobs</Link>
+                <ChevronRight className="h-3 w-3" />
+                <span className="text-ink">Senior Backend Engineer</span>
+              </div>
+            </div>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <h1 className="font-display font-bold text-2xl text-ink">Senior Backend Engineer</h1>
+              <h1 className="font-display font-bold text-xl text-ink">Senior Backend Engineer</h1>
               <div className="flex gap-2">
                 <span className="px-2 py-0.5 rounded-md bg-white border border-ink/10 text-ink-muted text-[10px] font-bold uppercase tracking-wider">Engineering</span>
                 <span className="px-2 py-0.5 rounded-md bg-[#E8EDFF] text-[#2D5BFF] text-[10px] font-bold uppercase tracking-wider">Senior</span>
@@ -87,22 +98,22 @@ const PipelineView = () => {
         </div>
 
         {/* Filter Bar */}
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4 flex-1">
-            <div className="relative w-full max-w-[280px]">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-muted" />
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <div className="relative w-full max-w-[240px] shrink-0">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-muted" />
               <input
                 type="text"
                 placeholder="Search candidates…"
-                className="w-full h-10 pl-10 pr-4 rounded-xl border border-ink/10 bg-white text-sm focus:outline-none transition"
+                className="w-full h-9 pl-9 pr-4 rounded-lg border border-ink/10 bg-white text-xs focus:outline-none transition shadow-sm"
               />
             </div>
-            <div className="flex gap-1.5 overflow-x-auto pb-0.5 no-scrollbar">
+            <div className="flex gap-1 shrink-0">
               {["All", "Applied", "Video invited", "Video done", "Shortlisted", "Rejected", "HOLD (3)"].map((stage, i) => (
                 <button
                   key={stage}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition ${
-                    i === 0 ? "bg-forest text-white" : stage.includes("HOLD") ? "bg-[#FFF4E5] text-[#FF9933] hover:bg-[#FFEACD]" : "bg-white border border-ink/10 text-ink-muted hover:text-ink"
+                  className={`px-2.5 py-1.5 rounded-lg text-[10px] font-bold whitespace-nowrap transition shadow-sm border ${
+                    i === 0 ? "bg-forest text-white border-forest" : stage.includes("HOLD") ? "bg-[#FFF4E5] text-[#FF9933] border-[#FF9933]/10" : "bg-white border-ink/10 text-ink-muted hover:text-ink"
                   }`}
                 >
                   {stage}
@@ -110,19 +121,19 @@ const PipelineView = () => {
               ))}
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <button className="h-10 px-3 rounded-xl border border-ink/10 bg-white text-sm font-medium text-ink flex items-center gap-2 hover:bg-cream/40 transition">
-              <span className="text-ink-muted">Score:</span> 0–100 <ChevronRight className="h-4 w-4 rotate-90" />
+          <div className="flex items-center gap-2 shrink-0">
+            <button className="h-9 px-3 rounded-lg border border-ink/10 bg-white text-[11px] font-bold text-ink flex items-center gap-2 hover:bg-cream/40 transition shadow-sm">
+              Score <ChevronRight className="h-3.5 w-3.5 rotate-90 opacity-40" />
             </button>
-            <button className="h-10 px-3 rounded-xl border border-ink/10 bg-white text-sm font-medium text-ink flex items-center gap-2 hover:bg-cream/40 transition">
-              <span className="text-ink-muted text-xs">Sort:</span> Score high to low <ArrowUpDown className="h-3.5 w-3.5" />
+            <button className="h-9 px-3 rounded-lg border border-ink/10 bg-white text-[11px] font-bold text-ink flex items-center gap-2 hover:bg-cream/40 transition shadow-sm">
+              Sort <ArrowUpDown className="h-3.5 w-3.5 opacity-40" />
             </button>
-            <div className="flex border border-ink/10 rounded-xl overflow-hidden">
-              <button className="p-2.5 bg-white border-r border-ink/10 text-ink-muted hover:text-ink transition">
-                <LayoutGrid className="h-4 w-4" />
+            <div className="flex border border-ink/10 rounded-lg overflow-hidden shadow-sm">
+              <button className="p-2 bg-white border-r border-ink/10 text-ink-muted hover:text-ink transition">
+                <LayoutGrid className="h-3.5 w-3.5" />
               </button>
-              <button className="p-2.5 bg-white text-forest transition">
-                <List className="h-4 w-4" />
+              <button className="p-2 bg-white text-forest transition">
+                <List className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>

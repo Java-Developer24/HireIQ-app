@@ -12,7 +12,15 @@ import { Footer } from "@/components/landing/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream landing-page-sizing">
+      <style>{`
+        .landing-page-sizing { font-size: 16px !important; }
+        .landing-page-sizing h1 { font-size: 4.5rem !important; line-height: 1.1 !important; }
+        .landing-page-sizing h2 { font-size: 3rem !important; line-height: 1.2 !important; }
+        .landing-page-sizing h3 { font-size: 1.5rem !important; }
+        .landing-page-sizing section { padding-top: 8rem !important; padding-bottom: 8rem !important; }
+        .landing-page-sizing .container { max-width: 1200px !important; }
+      `}</style>
       <Navbar />
       <main>
         <Hero />
