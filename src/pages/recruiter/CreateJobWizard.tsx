@@ -84,9 +84,9 @@ const CreateJobWizard = () => {
           </div>
 
           <div className="bg-white border border-ink/10 rounded-[24px] shadow-sm overflow-hidden p-9 relative">
-            <button className="absolute top-9 right-9 text-xs font-semibold text-ink-muted hover:text-forest underline transition">
+            {/* <button className="absolute top-9 right-9 text-xs font-semibold text-ink-muted hover:text-forest underline transition">
               Save as draft
-            </button>
+            </button> */}
 
             <Stepper currentStep={step} />
 
@@ -353,17 +353,17 @@ const CreateJobWizard = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     <label className="text-[10px] font-bold text-ink-muted uppercase tracking-widest block">Autonomous decisions</label>
                     <div className="space-y-4">
-                      <div className="h-5 w-full rounded-full flex overflow-hidden border border-ink/5">
+                      <div className="h-8 w-full rounded-full flex overflow-hidden border border-ink/5">
                         <div className="h-full bg-[#FFE5E5] w-[40%] flex items-center justify-center">
                           <span className="text-[8px] font-bold text-[#FF4D4D] uppercase">Auto-reject</span>
                         </div>
-                        <div className="h-full bg-[#FFF4E5] w-[35%] flex items-center justify-center border-x border-white/50">
+                        <div className="h-full bg-[#FFF4E5] w-[25%] flex items-center justify-center border-x border-white/50">
                           <span className="text-[8px] font-bold text-[#FF9933] uppercase">Review</span>
                         </div>
-                        <div className="h-full bg-[#E5F9F1] w-[25%] flex items-center justify-center">
+                        <div className="h-full bg-[#E5F9F1] w-[35%] flex items-center justify-center">
                           <span className="text-[8px] font-bold text-[#00CC88] uppercase">Auto-shortlist</span>
                         </div>
                       </div>

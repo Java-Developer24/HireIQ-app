@@ -23,7 +23,7 @@ const LoginCard = () => {
 
   return (
     <div className="w-full max-w-[380px] bg-white rounded-2xl border border-ink/10 p-8 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.06)] animate-in fade-in zoom-in duration-300">
-      <div className="flex justify-center mb-6"><HireIqLogo /></div>
+    
       <div className="space-y-1 text-center mb-6">
         <h1 className="font-display font-bold text-xl text-ink">Sign in to your account</h1>
         <p className="text-[13px] text-ink-muted">Enter credentials to access your portal</p>
@@ -104,13 +104,13 @@ const Login = () => {
     <div className="min-h-screen bg-cream grid-bg flex flex-col items-center justify-center p-6">
       <Link to="/" className="mb-8 hover:scale-105 transition-transform"><HireIqLogo /></Link>
       <LoginCard />
-      <div className="mt-8 text-center space-y-4">
+      {/* <div className="mt-8 text-center space-y-4">
         <p className="text-[11px] font-bold text-ink-muted uppercase tracking-widest">Trusted by 500+ teams</p>
         <div className="text-xs text-ink-muted">
           New to HireIQ?{" "}
           <Link to="/onboarding" className="text-forest font-bold hover:underline">Create workspace</Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
