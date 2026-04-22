@@ -107,30 +107,30 @@ const JobsList = () => {
 
   return (
     <RecruiterLayout title="Jobs">
-      <div className="p-8 space-y-6">
+      <div className="p-6 space-y-5">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <h1 className="font-display font-bold text-2xl text-ink">Jobs</h1>
-            <span className="text-sm text-ink-muted mt-1">(14)</span>
+          <div className="flex items-center gap-2">
+            <h1 className="font-display font-bold text-xl text-ink">Jobs</h1>
+            <span className="text-xs text-ink-muted mt-1">(14)</span>
           </div>
-          <Link to="/jobs/new" className="inline-flex items-center gap-1.5 h-10 px-4 rounded-lg bg-forest text-cream text-sm font-semibold hover:bg-forest-deep transition shadow-sm">
-            <Plus className="h-4 w-4" /> Create new job
+          <Link to="/jobs/new" className="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg bg-forest text-cream text-xs font-bold hover:bg-forest-deep transition shadow-sm">
+            <Plus className="h-3.5 w-3.5" /> Create new job
           </Link>
         </div>
 
         {/* Filter bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-4 flex-1">
-            <div className="relative w-full max-w-[300px]">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-muted" />
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div className="flex items-center gap-3 flex-1">
+            <div className="relative w-full max-w-[280px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-muted" />
               <input
                 type="text"
                 placeholder="Search by title or department"
-                className="w-full h-10 pl-10 pr-4 rounded-xl border border-ink/10 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-forest/20 transition"
+                className="w-full h-9 pl-9 pr-4 rounded-lg border border-ink/10 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-forest/10 transition shadow-sm"
               />
             </div>
-            <div className="flex bg-white border border-ink/10 rounded-xl p-1">
+            <div className="flex bg-white border border-ink/10 rounded-lg p-0.5 shadow-sm">
               {["All (14)", "Active (6)", "Paused (2)", "Closed (6)"].map((tab, i) => (
                 <button
                   key={tab}
@@ -143,19 +143,19 @@ const JobsList = () => {
               ))}
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <select className="h-10 px-3 pr-8 rounded-xl border border-ink/10 bg-white text-sm font-medium focus:outline-none transition appearance-none relative">
+          <div className="flex items-center gap-2">
+            <select className="h-9 px-3 pr-8 rounded-lg border border-ink/10 bg-white text-xs font-bold focus:outline-none transition appearance-none relative shadow-sm">
               <option>Department</option>
               <option>Engineering</option>
               <option>Product</option>
               <option>Sales</option>
             </select>
-            <div className="flex border border-ink/10 rounded-xl overflow-hidden">
-              <button className="p-2.5 bg-white border-r border-ink/10 text-forest transition">
-                <Grid className="h-4 w-4" />
+            <div className="flex border border-ink/10 rounded-lg overflow-hidden shadow-sm">
+              <button className="p-2 bg-white border-r border-ink/10 text-forest transition">
+                <Grid className="h-3.5 w-3.5" />
               </button>
-              <button className="p-2.5 bg-white text-ink-muted hover:text-ink transition">
-                <ListIcon className="h-4 w-4" />
+              <button className="p-2 bg-white text-ink-muted hover:text-ink transition">
+                <ListIcon className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>

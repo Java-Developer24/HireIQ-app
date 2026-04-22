@@ -9,9 +9,11 @@ import {
   ArrowRight,
   Camera,
   CheckCircle2,
-  Lock
+  Lock,
+  ArrowUpRight
 } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ApplyPage = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -27,10 +29,15 @@ const ApplyPage = () => {
             <div className="space-y-2">
               <h1 className="text-3xl font-display font-bold text-ink">Application received!</h1>
               <p className="text-sm text-ink-muted leading-relaxed">
-                We've send your video interview link to <span className="font-bold text-ink">priya@email.com</span> shortly.
+                We've sent your video interview link to <span className="font-bold text-ink">priya@email.com</span>.
               </p>
             </div>
-            <p className="text-[11px] text-ink-muted/60">Check your inbox — including spam folder.</p>
+            <div className="pt-4 space-y-4">
+              <Link to="/device-check" className="w-full h-12 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-forest-deep transition shadow-lg shadow-[#0D1829]/10">
+                Proceed to interview <ArrowRight className="h-4 w-4" />
+              </Link>
+              <p className="text-[11px] text-ink-muted/60">Check your inbox — including spam folder.</p>
+            </div>
           </div>
         </div>
       </CandidateLayout>
