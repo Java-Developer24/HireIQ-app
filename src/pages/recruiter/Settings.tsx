@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
+import { Link } from "react-router-dom";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("Branding");
