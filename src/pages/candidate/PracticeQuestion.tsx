@@ -8,12 +8,25 @@ import {
   Video,
   StopCircle
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const PracticeQuestion = () => {
   const [state, setState] = useState<"prep" | "recording" | "playback">("prep");
   const [countdown, setCountdown] = useState(30);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (state === "recording" && videoRef.current) {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(stream => {
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+          }
+        })
+        .catch(err => console.error("Camera error:", err));
+    }
+  }, [state]);
 
   useEffect(() => {
     let timer: any;
@@ -65,23 +78,24 @@ const PracticeQuestion = () => {
             <div className="min-h-[260px] flex flex-col items-center justify-center">
               {state === "prep" && (
                 <div className="space-y-8 animate-in fade-in duration-500">
-                  <div className="relative h-32 w-32 mx-auto flex items-center justify-center">
-                    <svg className="absolute inset-0 h-full w-full -rotate-90">
+                  <div className="relative h-36 w-36 mx-auto flex items-center justify-center">
+                    <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 144 144">
                       <circle
-                        cx="64" cy="64" r="60"
+                        cx="72" cy="72" r="64"
                         fill="transparent"
                         stroke="currentColor"
                         strokeWidth="8"
                         className="text-ink/5"
                       />
                       <circle
-                        cx="64" cy="64" r="60"
+                        cx="72" cy="72" r="64"
                         fill="transparent"
                         stroke="currentColor"
                         strokeWidth="8"
                         className="text-[#0D1829] transition-all duration-1000"
-                        strokeDasharray={377}
-                        strokeDashoffset={377 - (377 * countdown / 30)}
+                        strokeDasharray={402}
+                        strokeDashoffset={402 - (402 * countdown / 30)}
+                        strokeLinecap="round"
                       />
                     </svg>
                     <div className="text-center">
@@ -107,18 +121,29 @@ const PracticeQuestion = () => {
 
               {state === "recording" && (
                 <div className="w-full space-y-6 animate-in zoom-in-95 duration-300">
-                  <div className="aspect-video w-full bg-ink rounded-2xl relative overflow-hidden shadow-2xl">
-                    <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+                  <div className="aspect-video w-full bg-ink rounded-2xl relative overflow-hidden shadow-2xl border border-white/10">
+                    <video
+                      ref={videoRef}
+                      autoPlay
+                      muted
+                      className="absolute inset-0 w-full h-full object-cover mirror"
+                    />
+                    <style>{`.mirror { transform: scaleX(-1); }`}</style>
+                    <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full z-10">
                       <div className="h-2 w-2 rounded-full bg-[#FF4D4D] animate-pulse" />
                       <span className="text-[10px] font-bold text-white uppercase tracking-wider">REC</span>
                     </div>
-                    <div className="absolute top-4 right-4 text-[10px] font-mono font-bold text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+                    <div className="absolute top-4 right-4 text-[10px] font-mono font-bold text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full z-10">
                       0:23 / 1:30
                     </div>
-                    <Video className="h-12 w-12 text-white/20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                   </div>
                   <button
-                    onClick={() => setState("playback")}
+                    onClick={() => {
+                      if (videoRef.current && videoRef.current.srcObject) {
+                        (videoRef.current.srcObject as MediaStream).getTracks().forEach(track => track.stop());
+                      }
+                      setState("playback");
+                    }}
                     className="h-14 px-8 bg-white border border-[#FF4D4D] text-[#FF4D4D] font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-[#FFE5E5] transition mx-auto"
                   >
                     <StopCircle className="h-5 w-5" /> Stop recording
@@ -146,10 +171,10 @@ const PracticeQuestion = () => {
                         <RefreshCw className="h-4 w-4" /> Re-record
                       </button>
                       <Link
-                        to="/interview"
+                        to="/assessment-mcq"
                         className="h-14 px-10 rounded-2xl bg-[#0D1829] text-white font-bold flex items-center gap-2 hover:bg-forest-deep transition shadow-xl shadow-[#0D1829]/10 w-full md:w-auto justify-center"
                       >
-                        I'm ready — start the interview <ArrowRight className="h-4 w-4" />
+                        I'm ready — start assessment <ArrowRight className="h-4 w-4" />
                       </Link>
                     </div>
                     <p className="text-[11px] text-ink-muted italic">

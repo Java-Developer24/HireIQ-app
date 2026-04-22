@@ -71,8 +71,18 @@ const CreateJobWizard = () => {
 
   return (
     <RecruiterLayout title={step === 1 ? "Create new job" : step === 2 ? "Upload JD" : "Configure AI"} showNewJobButton={false}>
-      <div className="p-8 flex justify-center min-h-[calc(100vh-3.5rem)] bg-cream/40">
-        <div className="w-full max-w-[720px]">
+      <div className="p-6 flex flex-col items-center bg-cream/40 min-h-[calc(100vh-3rem)]">
+        <div className="w-full max-w-[720px] space-y-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => step === 1 ? navigate("/jobs") : handleBack()}
+              className="h-8 w-8 rounded-lg border border-ink/10 bg-white flex items-center justify-center text-ink-muted hover:text-ink transition shadow-sm"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <span className="text-xs font-bold text-ink-muted uppercase tracking-wider">Back to {step === 1 ? 'Jobs' : 'Previous step'}</span>
+          </div>
+
           <div className="bg-white border border-ink/10 rounded-[24px] shadow-sm overflow-hidden p-9 relative">
             <button className="absolute top-9 right-9 text-xs font-semibold text-ink-muted hover:text-forest underline transition">
               Save as draft

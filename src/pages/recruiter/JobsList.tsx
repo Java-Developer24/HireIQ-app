@@ -110,9 +110,17 @@ const JobsList = () => {
       <div className="p-6 space-y-5">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <h1 className="font-display font-bold text-xl text-ink">Jobs</h1>
-            <span className="text-xs text-ink-muted mt-1">(14)</span>
+          <div className="flex items-center gap-4">
+             <button
+                onClick={() => navigate("/dashboard")}
+                className="h-8 w-8 rounded-lg border border-ink/10 flex items-center justify-center text-ink-muted hover:text-ink hover:bg-white transition shadow-sm"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+            <div className="flex items-center gap-2">
+              <h1 className="font-display font-bold text-xl text-ink">Jobs</h1>
+              <span className="text-xs text-ink-muted mt-1">(14)</span>
+            </div>
           </div>
           <Link to="/jobs/new" className="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg bg-forest text-cream text-xs font-bold hover:bg-forest-deep transition shadow-sm">
             <Plus className="h-3.5 w-3.5" /> Create new job

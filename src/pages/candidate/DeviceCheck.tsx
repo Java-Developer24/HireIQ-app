@@ -34,7 +34,7 @@ const DeviceCheck = () => {
             <div className="flex items-center gap-1">
               {[
                 { label: "Device check", active: true },
-                { label: "Practice" },
+                { label: "Assessment" },
                 { label: "Interview" },
                 { label: "Done" }
               ].map((s, i) => (
@@ -112,8 +112,8 @@ const DeviceCheck = () => {
           </div>
 
           <div className="space-y-4">
-            <Link to="/practice" className="w-full h-14 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-forest-deep transition shadow-xl shadow-[#0D1829]/10">
-              Continue to practice question <ArrowRight className="h-4 w-4" />
+            <Link to="/practice" className="w-full h-12 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-forest-deep transition shadow-lg shadow-[#0D1829]/10">
+              Continue to practice round <ArrowRight className="h-4 w-4" />
             </Link>
             <button className="w-full text-xs font-bold text-ink-muted hover:text-ink transition">
               Having trouble? Contact support

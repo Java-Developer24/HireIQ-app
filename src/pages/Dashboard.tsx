@@ -25,7 +25,7 @@ const jobs = [
 
 const feed = [
   { dot: "bg-destructive", text: "Auto-rejected Ahmed S. — score 31 · Senior Backend Engineer", time: "2 min ago" },
-  { dot: "bg-blue-500", text: "Sent video invite to Priya M. — score 74", time: "8 min ago" },
+  { dot: "bg-blue-500", text: "Sent video invite to Jordan M. — score 74", time: "8 min ago" },
   { dot: "bg-lime", text: "Shortlisted Sara K. · Product Manager", time: "1 hr ago" },
   { dot: "bg-destructive", text: "Auto-rejected James T. — score 28", time: "2 hrs ago" },
   { dot: "bg-blue-500", text: "Sent video invite to Mohan R. — score 81", time: "3 hrs ago" },
@@ -36,7 +36,7 @@ const Dashboard = () => {
     <RecruiterLayout title="Dashboard">
       <div className="p-8 space-y-6">
         <div>
-          <h1 className="font-display font-bold text-2xl text-ink">Good morning, Azeem</h1>
+          <h1 className="font-display font-bold text-2xl text-ink">Good morning, Alex</h1>
           <p className="text-sm text-ink-muted mt-1">Here's what the AI has been doing across your active jobs.</p>
         </div>
 

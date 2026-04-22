@@ -109,7 +109,7 @@ const ApplyPage = () => {
             <div className="space-y-6">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-bold text-ink uppercase tracking-widest">Full name *</label>
-                <input type="text" defaultValue="Priya Mehta" className="w-full h-12 px-4 rounded-xl border border-ink/10 bg-white text-sm focus:outline-none focus:ring-1 focus:ring-forest transition shadow-sm" />
+                <input type="text" defaultValue="Jordan Mehta" className="w-full h-12 px-4 rounded-xl border border-ink/10 bg-white text-sm focus:outline-none focus:ring-1 focus:ring-forest transition shadow-sm" />
               </div>
 
               <div className="space-y-1.5">

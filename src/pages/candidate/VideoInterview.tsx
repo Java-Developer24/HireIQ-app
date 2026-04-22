@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CandidateLayout } from "@/components/layout/CandidateLayout";
 import {
   Volume2,
@@ -14,9 +14,22 @@ import { useNavigate } from "react-router-dom";
 
 const VideoInterview = () => {
   const [state, setState] = useState<"prep" | "recording" | "uploading" | "complete">("prep");
-  const [currentQuestion, setCurrentQuestion] = useState(3);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
   const [countdown, setCountdown] = useState(24);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (state === "recording" && videoRef.current) {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(stream => {
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+          }
+        })
+        .catch(err => console.error("Camera error:", err));
+    }
+  }, [state]);
 
   useEffect(() => {
     let timer: any;
@@ -30,11 +43,15 @@ const VideoInterview = () => {
 
   const handleNext = () => {
     if (state === "recording") {
+      if (videoRef.current && videoRef.current.srcObject) {
+        (videoRef.current.srcObject as MediaStream).getTracks().forEach(track => track.stop());
+      }
       setState("uploading");
       setTimeout(() => {
-        if (currentQuestion < 8) {
-          // Loop back for next question (mock)
-          setState("complete"); // Just go to complete for this demo flow
+        if (currentQuestion < 3) { // Demo only 3 questions
+          setCurrentQuestion(currentQuestion + 1);
+          setCountdown(24);
+          setState("prep");
         } else {
           setState("complete");
         }
@@ -43,30 +60,7 @@ const VideoInterview = () => {
   };
 
   return (
-    <CandidateLayout className="bg-[#0f1117]" showLogo={false}>
-      {/* Dark Immersive Header */}
-      <header className="h-14 bg-[#1a1d25] border-b border-white/5 flex items-center justify-between px-8 flex-none">
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-4">
-            <span className="text-xs font-bold text-white/80">Question {currentQuestion} of 8</span>
-            <div className="flex gap-1.5">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-                <div key={i} className={`h-1.5 w-1.5 rounded-full ${
-                  i < currentQuestion ? "bg-[#00CC88]" : i === currentQuestion ? "bg-[#2D5BFF]" : "bg-white/10"
-                }`} />
-              ))}
-            </div>
-          </div>
-          <div className="h-4 w-px bg-white/5" />
-          <span className="px-2 py-0.5 rounded bg-amber-soft/10 text-amber-warm text-[9px] font-black tracking-widest uppercase">
-            BEHAVIOURAL
-          </span>
-        </div>
-        <div className="text-[11px] font-mono font-bold text-white/40 flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-white/20" />
-          Session time remaining: 18:42
-        </div>
-      </header>
+    <CandidateLayout className="bg-[#0f1117]" showLogo={true}>
 
       <div className="flex-1 flex flex-col items-center justify-center p-6 relative overflow-hidden">
         {/* Background glow effects */}
@@ -84,15 +78,24 @@ const VideoInterview = () => {
             </div>
 
             <div className="space-y-8">
-              <div className="relative h-36 w-36 mx-auto flex items-center justify-center">
-                <svg className="absolute inset-0 h-full w-full -rotate-90">
-                  <circle cx="72" cy="72" r="68" fill="transparent" stroke="currentColor" strokeWidth="4" className="text-white/5" />
+              <div className="flex items-center justify-center gap-4 mb-4">
+                 <span className="text-xs font-bold text-white/40 uppercase tracking-widest">Question {currentQuestion} of 3</span>
+                 <div className="flex gap-1">
+                    {[1, 2, 3].map(i => (
+                      <div key={i} className={`h-1 w-4 rounded-full ${i <= currentQuestion ? 'bg-forest' : 'bg-white/10'}`} />
+                    ))}
+                 </div>
+              </div>
+              <div className="relative h-40 w-40 mx-auto flex items-center justify-center">
+                <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 160 160">
+                  <circle cx="80" cy="80" r="72" fill="transparent" stroke="currentColor" strokeWidth="6" className="text-white/5" />
                   <circle
-                    cx="72" cy="72" r="68"
-                    fill="transparent" stroke="currentColor" strokeWidth="4"
+                    cx="80" cy="80" r="72"
+                    fill="transparent" stroke="currentColor" strokeWidth="6"
                     className="text-white transition-all duration-1000"
-                    strokeDasharray={427}
-                    strokeDashoffset={427 - (427 * countdown / 24)}
+                    strokeDasharray={452}
+                    strokeDashoffset={452 - (452 * countdown / 24)}
+                    strokeLinecap="round"
                   />
                 </svg>
                 <div className="text-center">
@@ -129,17 +132,13 @@ const VideoInterview = () => {
              </div>
 
              <div className="aspect-video w-full bg-black rounded-[32px] border border-white/10 relative overflow-hidden shadow-2xl group">
-                {/* Camera feed placeholder */}
-                <div className="absolute inset-0 bg-[#0f1117] flex items-center justify-center">
-                   <div className="relative">
-                      <div className="h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-                      <img
-                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] max-w-none opacity-40 grayscale"
-                        alt="Candidate feed"
-                      />
-                   </div>
-                </div>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  muted
+                  className="absolute inset-0 w-full h-full object-cover mirror"
+                />
+                <style>{`.mirror { transform: scaleX(-1); }`}</style>
 
                 <div className="absolute top-6 left-6 flex items-center gap-2.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
                   <div className="h-2 w-2 rounded-full bg-[#FF4D4D] animate-pulse" />
@@ -196,7 +195,7 @@ const VideoInterview = () => {
             </div>
             <div className="space-y-3">
               <h2 className="text-4xl font-display font-bold text-white tracking-tight">Interview complete</h2>
-              <p className="text-base text-white/60">Thanks, Priya. The AI is now analysing your answers.</p>
+              <p className="text-base text-white/60">Thanks, Jordan. The AI is now analysing your answers.</p>
             </div>
 
             <div className="space-y-6 pt-4">
@@ -207,13 +206,13 @@ const VideoInterview = () => {
               <div className="p-6 rounded-[24px] bg-white/5 border border-white/5 backdrop-blur-sm space-y-6">
                 <div className="space-y-1.5">
                   <p className="text-xs font-bold text-white/80 uppercase tracking-widest">Next step</p>
-                  <p className="text-base font-semibold text-white">Skills assessment (takes about 15 minutes)</p>
+                  <p className="text-base font-semibold text-white">Machine coding round (takes about 45 minutes)</p>
                 </div>
                 <button
-                  onClick={() => navigate("/assessment-mcq")}
+                  onClick={() => navigate("/assessment-coding")}
                   className="h-14 w-full bg-[#2D5BFF] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-[#2D5BFF]/80 transition shadow-xl shadow-[#2D5BFF]/20"
                 >
-                  Continue to assessment <ArrowRight className="h-4 w-4" />
+                  Continue to coding round <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
             </div>

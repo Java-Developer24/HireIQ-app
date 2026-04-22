@@ -36,13 +36,13 @@ const Card = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const Step1 = () => (
+const Step1 = ({ onNext }: { onNext: () => void }) => (
   <Card>
     <Stepper active={1} />
     <h2 className="mt-8 font-display font-bold text-[18px] text-ink">Tell us about your organisation</h2>
     <p className="text-[13px] text-ink-muted mt-1">A few details to personalise your workspace.</p>
     <div className="mt-6 space-y-4">
-      <Field label="Organisation name"><input defaultValue="Acme Corp" className="input" /></Field>
+      <Field label="Organisation name"><input defaultValue="Data Panther" className="input" /></Field>
       <Field label="Industry">
         <select className="input" defaultValue="Technology">
           <option>Technology</option><option>Finance</option><option>Healthcare</option><option>Retail</option>
@@ -54,13 +54,13 @@ const Step1 = () => (
         </select>
       </Field>
     </div>
-    <button className="mt-7 w-full h-11 rounded-xl bg-forest text-cream font-semibold text-sm hover:bg-forest-deep transition flex items-center justify-center gap-2">
+    <button onClick={onNext} className="mt-7 w-full h-11 rounded-xl bg-forest text-cream font-semibold text-sm hover:bg-forest-deep transition flex items-center justify-center gap-2 shadow-sm">
       Next: Set up branding <ArrowRight className="h-4 w-4" />
     </button>
   </Card>
 );
 
-const Step2 = () => (
+const Step2 = ({ onNext }: { onNext: () => void }) => (
   <Card>
     <Stepper active={2} />
     <h2 className="mt-8 font-display font-bold text-[18px] text-ink">Make it yours</h2>
@@ -75,29 +75,29 @@ const Step2 = () => (
         </Field>
         <Field label="Brand colour">
           <div className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-lg border border-ink/15" style={{ backgroundColor: "#1a2744" }} />
-            <input defaultValue="#1a2744" className="input flex-1 font-mono text-xs" />
+            <div className="h-9 w-9 rounded-lg border border-ink/15" style={{ backgroundColor: "#0D1829" }} />
+            <input defaultValue="#0D1829" className="input flex-1 font-mono text-xs" />
           </div>
         </Field>
         <Field label="Tagline">
-          <input defaultValue="Build with us" className="input" />
+          <input defaultValue="Scale your team" className="input" />
         </Field>
       </div>
 
       <div>
         <div className="text-xs font-medium text-ink mb-1.5">Live preview</div>
         <div className="rounded-xl border border-ink/10 bg-cream p-4 h-full">
-          <div className="h-2 w-2 rounded-full mb-3" style={{ backgroundColor: "#1a2744" }} />
-          <div className="text-[11px] font-bold text-ink">Acme Corp</div>
-          <div className="text-[9px] text-ink-muted">Build with us</div>
+          <div className="h-2 w-2 rounded-full mb-3" style={{ backgroundColor: "#0D1829" }} />
+          <div className="text-[11px] font-bold text-ink">Data Panther</div>
+          <div className="text-[9px] text-ink-muted">Scale your team</div>
           <div className="mt-3 h-12 rounded bg-white border border-ink/10" />
-          <div className="mt-2 h-6 rounded text-[9px] font-bold text-white flex items-center justify-center" style={{ backgroundColor: "#1a2744" }}>
+          <div className="mt-2 h-6 rounded text-[9px] font-bold text-white flex items-center justify-center" style={{ backgroundColor: "#0D1829" }}>
             Apply now
           </div>
         </div>
       </div>
     </div>
-    <button className="mt-7 w-full h-11 rounded-xl bg-forest text-cream font-semibold text-sm hover:bg-forest-deep transition flex items-center justify-center gap-2">
+    <button onClick={onNext} className="mt-7 w-full h-11 rounded-xl bg-forest text-cream font-semibold text-sm hover:bg-forest-deep transition flex items-center justify-center gap-2 shadow-sm">
       Next: Invite your team <ArrowRight className="h-4 w-4" />
     </button>
   </Card>
@@ -106,8 +106,8 @@ const Step2 = () => (
 const Step3 = () => {
   const navigate = useNavigate();
   const [rows, setRows] = useState([
-    { email: "priya@acme.com", role: "Admin" },
-    { email: "raj@acme.com", role: "Recruiter" },
+    { email: "alex@datapanther.com", role: "Admin" },
+    { email: "sam@datapanther.com", role: "Recruiter" },
     { email: "", role: "Hiring Manager" },
   ]);
   return (
@@ -130,7 +130,7 @@ const Step3 = () => {
         <Plus className="h-3.5 w-3.5" /> Add another member
       </button>
       <div className="mt-7 space-y-2">
-        <button onClick={() => navigate("/dashboard")} className="w-full h-11 rounded-xl bg-forest text-cream font-semibold text-sm hover:bg-forest-deep transition">
+        <button onClick={() => navigate("/dashboard")} className="w-full h-11 rounded-xl bg-forest text-cream font-semibold text-sm hover:bg-forest-deep transition shadow-sm">
           Finish setup — go to dashboard
         </button>
         <button onClick={() => navigate("/dashboard")} className="w-full h-9 text-xs text-ink-muted hover:text-ink">Skip for now</button>
@@ -147,17 +147,15 @@ const Field = ({ label, children }: { label: string; children: React.ReactNode }
 );
 
 const Onboarding = () => {
+  const [step, setStep] = useState(1);
   return (
-    <div className="min-h-screen bg-cream grid-bg">
+    <div className="min-h-screen bg-cream grid-bg flex flex-col items-center justify-center p-6">
       <style>{`.input{height:2.5rem;width:100%;padding:0 0.875rem;border-radius:0.75rem;background:hsl(var(--cream)/0.6);border:1px solid hsl(var(--ink)/0.15);font-size:0.875rem;color:hsl(var(--ink));outline:none;transition:all .15s}.input:focus{box-shadow:0 0 0 3px hsl(var(--forest)/0.15)}`}</style>
-      <div className="container py-10">
-        <Link to="/" className="inline-block mb-8"><HireIqLogo /></Link>
-        <p className="text-center text-[11px] uppercase tracking-wider text-ink-muted font-semibold mb-5">Onboarding wizard — all 3 states</p>
-        <div className="space-y-10 flex flex-col items-center">
-          <Step1 />
-          <Step2 />
-          <Step3 />
-        </div>
+      <Link to="/" className="mb-8"><HireIqLogo /></Link>
+      <div className="w-full flex justify-center animate-in fade-in slide-in-from-bottom-4 duration-500">
+        {step === 1 && <Step1 onNext={() => setStep(2)} />}
+        {step === 2 && <Step2 onNext={() => setStep(3)} />}
+        {step === 3 && <Step3 />}
       </div>
     </div>
   );

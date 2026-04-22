@@ -17,21 +17,7 @@ const AssessmentCoding = () => {
   const navigate = useNavigate();
 
   return (
-    <CandidateLayout className="bg-[#1e1e2e]" showLogo={false}>
-      {/* Top Bar */}
-      <header className="h-14 bg-white border-b border-ink/5 px-8 flex items-center justify-between flex-none">
-        <div className="flex items-center gap-6">
-          <span className="text-sm font-bold text-ink">Coding assessment — Senior Backend Engineer</span>
-          <div className="h-4 w-px bg-ink/10" />
-          <div className="flex items-center gap-3">
-             <span className="text-[10px] font-bold text-ink-muted uppercase tracking-widest">Problem 1 of 2</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 text-sm font-bold text-ink-muted">
-           <Clock className="h-4 w-4 text-amber-warm" />
-           Time remaining: 42:18
-        </div>
-      </header>
+    <CandidateLayout className="bg-[#1e1e2e]" showLogo={true}>
 
       {/* Warning Banner */}
       <div className="bg-amber-soft/90 border-b border-amber-warm/10 py-1.5 px-8 flex items-center justify-center gap-2 flex-none">
