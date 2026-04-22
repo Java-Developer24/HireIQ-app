@@ -22,16 +22,25 @@ export default {
         forest: {
           DEFAULT: "hsl(var(--forest))",
           deep: "hsl(var(--forest-deep))",
+          soft: "hsl(var(--forest-soft))",
         },
         lime: {
           DEFAULT: "hsl(var(--lime))",
           soft: "hsl(var(--lime-soft))",
         },
-        cream: "hsl(var(--cream))",
+        cream: {
+          DEFAULT: "hsl(var(--cream))",
+          warm: "hsl(var(--cream-warm))",
+        },
         ink: {
           DEFAULT: "hsl(var(--ink))",
           muted: "hsl(var(--ink-muted))",
         },
+        amber: {
+          DEFAULT: "hsl(var(--amber))",
+          soft: "hsl(var(--amber-soft))",
+        },
+        plum: "hsl(var(--plum))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
