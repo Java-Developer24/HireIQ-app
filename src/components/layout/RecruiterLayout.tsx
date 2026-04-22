@@ -1,6 +1,14 @@
-import { Link, useLocation } from "react-router-dom";
-import { LayoutGrid, Briefcase, ClipboardList, Settings, Plus, ChevronDown } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { LayoutGrid, Briefcase, ClipboardList, Settings, Plus, ChevronDown, LogOut } from "lucide-react";
 import { ReactNode } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const SidebarItem = ({ Icon, label, path, badge }: { Icon: any; label: string; path: string; badge?: string }) => {
   const location = useLocation();
@@ -25,11 +33,13 @@ const SidebarItem = ({ Icon, label, path, badge }: { Icon: any; label: string; p
 };
 
 export const RecruiterLayout = ({ children, title, showNewJobButton = true }: { children: ReactNode; title: string; showNewJobButton?: boolean }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex bg-cream">
       {/* Sidebar */}
-      <aside className="w-60 bg-forest-deep flex flex-col px-4 py-5 gap-1 fixed inset-y-0 left-0 z-50">
-        <Link to="/dashboard" className="mb-6 px-2 flex items-center gap-2">
+      <aside className="w-52 bg-forest-deep flex flex-col px-3 py-4 gap-0.5 fixed inset-y-0 left-0 z-50">
+        <Link to="/dashboard" className="mb-4 px-2 flex items-center gap-2">
           <div className="h-8 w-8 rounded-lg bg-forest flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-lime/30 rounded-full blur-md" />
             <span className="relative font-display font-bold text-lime text-lg leading-none">H</span>
@@ -37,14 +47,14 @@ export const RecruiterLayout = ({ children, title, showNewJobButton = true }: { 
           <span className="font-display font-bold text-[18px] tracking-tight text-cream">HireIQ</span>
         </Link>
 
-        <div className="px-3 mb-1.5 text-[10px] uppercase tracking-wider text-cream/40 font-semibold">Workspace</div>
+        <div className="px-3 mb-1 text-[9px] uppercase tracking-wider text-cream/40 font-semibold">Workspace</div>
         <SidebarItem Icon={LayoutGrid} label="Dashboard" path="/dashboard" />
         <SidebarItem Icon={Briefcase} label="Jobs" path="/jobs" />
         <SidebarItem Icon={ClipboardList} label="Review Queue" path="/review" badge="3" />
         <SidebarItem Icon={Settings} label="Settings" path="/settings" />
 
         <div className="flex-1" />
-        <div className="border-t border-cream/10 pt-3 px-2 flex items-center gap-2.5">
+        <div className="border-t border-cream/10 pt-2 px-2 flex items-center gap-2">
           <div className="h-8 w-8 rounded-full bg-lime text-forest flex items-center justify-center text-xs font-bold flex-none">AZ</div>
           <div className="min-w-0 flex-1">
             <div className="text-xs font-semibold text-cream truncate">Azeem</div>
@@ -55,23 +65,41 @@ export const RecruiterLayout = ({ children, title, showNewJobButton = true }: { 
       </aside>
 
       {/* Main */}
-      <div className="flex-1 flex flex-col ml-60">
+      <div className="flex-1 flex flex-col ml-52">
         {/* Top bar */}
-        <header className="h-14 bg-white border-b border-ink/10 flex items-center justify-between px-6 sticky top-0 z-40">
+        <header className="h-12 bg-white border-b border-ink/10 flex items-center justify-between px-5 sticky top-0 z-40">
           <div className="text-sm text-ink-muted">
             <span className="text-ink font-semibold">{title}</span>
           </div>
           <div className="flex items-center gap-3">
             {showNewJobButton && (
-              <Link to="/jobs/new" className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-lg bg-forest text-cream text-sm font-semibold hover:bg-forest-deep transition">
-                <Plus className="h-4 w-4" /> New Job
+              <Link to="/jobs/new" className="inline-flex items-center gap-1.5 h-8 px-3 rounded-lg bg-forest text-cream text-xs font-bold hover:bg-forest-deep transition shadow-sm">
+                <Plus className="h-3.5 w-3.5" /> New Job
               </Link>
             )}
-            <button className="inline-flex items-center gap-2 h-9 px-2 rounded-lg hover:bg-cream/60 transition">
-              <span className="text-sm font-medium text-ink">Azeem</span>
-              <div className="h-7 w-7 rounded-full bg-forest text-cream flex items-center justify-center text-[11px] font-bold">AZ</div>
-              <ChevronDown className="h-3.5 w-3.5 text-ink-muted" />
-            </button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="inline-flex items-center gap-2 h-9 px-2 rounded-lg hover:bg-cream/60 transition focus:outline-none">
+                  <span className="text-xs font-bold text-ink">Azeem</span>
+                  <div className="h-7 w-7 rounded-full bg-forest text-cream flex items-center justify-center text-[10px] font-bold shadow-sm">AZ</div>
+                  <ChevronDown className="h-3.5 w-3.5 text-ink-muted" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 rounded-xl border-ink/10 shadow-xl">
+                <DropdownMenuLabel className="text-[10px] uppercase tracking-widest text-ink-muted font-bold">Azeem Account</DropdownMenuLabel>
+                <DropdownMenuSeparator className="bg-ink/5" />
+                <DropdownMenuItem className="text-xs font-medium py-2.5 cursor-pointer rounded-lg">Profile Settings</DropdownMenuItem>
+                <DropdownMenuItem className="text-xs font-medium py-2.5 cursor-pointer rounded-lg">Billing & Usage</DropdownMenuItem>
+                <DropdownMenuSeparator className="bg-ink/5" />
+                <DropdownMenuItem
+                  onClick={() => navigate("/")}
+                  className="text-xs font-bold py-2.5 cursor-pointer rounded-lg text-destructive hover:bg-destructive/5"
+                >
+                  <LogOut className="h-3.5 w-3.5 mr-2" /> Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </header>
 
