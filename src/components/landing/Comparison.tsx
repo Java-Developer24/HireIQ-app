@@ -18,7 +18,7 @@ const cell = (v: boolean | string) => {
 
 export const Comparison = () => {
   return (
-    <section className="py-24 bg-cream">
+    <section className="py-24 bg-cream-warm">
       <div className="container max-w-[900px]">
         <div className="text-center mb-10">
           <div className="text-xs font-medium text-ink-muted uppercase tracking-wider">// Comparison //</div>

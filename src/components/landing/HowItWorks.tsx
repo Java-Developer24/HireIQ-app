@@ -22,17 +22,17 @@ const cards = [
   {
     n: "03",
     icon: ClipboardCheck,
-    iconBg: "bg-amber-400 text-ink",
+    iconBg: "bg-amber-warm text-cream",
     title: "You review the results",
     body: "Ranked shortlist, AI reasoning, suggested panel questions.",
     tag: "Human for exceptions only",
-    tagBg: "bg-amber-100 text-amber-900",
+    tagBg: "bg-amber-soft text-amber-warm",
   },
 ];
 
 export const HowItWorks = () => {
   return (
-    <section id="how" className="py-24 bg-cream">
+    <section id="how" className="py-24 bg-cream-warm">
       <div className="container max-w-6xl">
         <div className="text-center mb-12">
           <div className="text-xs font-medium text-ink-muted uppercase tracking-wider">// How it works //</div>

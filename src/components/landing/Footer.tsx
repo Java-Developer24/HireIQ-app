@@ -2,7 +2,7 @@ import { Twitter, Linkedin, Github } from "lucide-react";
 import { HireIqLogo } from "@/components/HireIqLogo";
 
 export const Footer = () => (
-  <footer className="bg-cream border-t border-ink/10">
+  <footer className="bg-cream-warm border-t border-ink/10">
     <div className="container py-16">
       <div className="grid md:grid-cols-4 gap-10">
         <div>
