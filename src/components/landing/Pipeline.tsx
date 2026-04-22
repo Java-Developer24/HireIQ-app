@@ -10,7 +10,7 @@ const stages = [
 
 export const Pipeline = () => {
   return (
-    <section id="product" className="py-20 bg-cream">
+    <section id="product" className="py-20 bg-cream-warm">
       <div className="container">
         <div className="max-w-[900px] mx-auto bg-white border border-ink/10 rounded-3xl p-8">
           <div className="text-center mb-8">

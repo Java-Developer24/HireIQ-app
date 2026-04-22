@@ -139,7 +139,7 @@ const Dashboard = () => {
                       <td className="px-3 py-4 text-center text-ink font-semibold">{j.shortlisted}</td>
                       <td className="px-3 py-4 text-center">
                         {j.pending > 0 ? (
-                          <span className="inline-flex items-center justify-center h-6 min-w-6 px-1.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold">{j.pending}</span>
+                          <span className="inline-flex items-center justify-center h-6 min-w-6 px-1.5 rounded-full bg-amber-soft text-amber-warm text-[11px] font-bold">{j.pending}</span>
                         ) : (
                           <span className="text-ink-muted">0</span>
                         )}
@@ -170,11 +170,11 @@ const Dashboard = () => {
                   </li>
                 ))}
               </ul>
-              <div className="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-3.5 flex items-start gap-2.5">
-                <AlertTriangle className="h-4 w-4 text-amber-600 flex-none mt-0.5" />
+              <div className="mt-4 rounded-xl bg-amber-soft border border-amber-warm/30 p-3.5 flex items-start gap-2.5">
+                <AlertTriangle className="h-4 w-4 text-amber-warm flex-none mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-[12px] text-amber-900 font-medium">Review queue has 3 candidates waiting 18h+</p>
-                  <button className="mt-1 inline-flex items-center gap-1 text-[12px] font-semibold text-amber-700 hover:underline">
+                  <p className="text-[12px] text-ink font-medium">Review queue has 3 candidates waiting 18h+</p>
+                  <button className="mt-1 inline-flex items-center gap-1 text-[12px] font-semibold text-amber-warm hover:underline">
                     Review now <ArrowRight className="h-3 w-3" />
                   </button>
                 </div>
