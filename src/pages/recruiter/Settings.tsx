@@ -175,7 +175,7 @@ const Settings = () => {
                     <h4 className="text-sm font-bold text-ink">{template}</h4>
                     <button className="text-[10px] font-bold text-forest opacity-0 group-hover:opacity-100 transition">Edit</button>
                   </div>
-                  <p className="text-xs text-ink-muted line-clamp-2">Hi {"{{candidate_name}}"},\n\nThank you for applying to the Senior Backend Engineer position at Data Panther...</p>
+                  <p className="text-xs text-ink-muted line-clamp-2">Hi {"{{candidate_name}}"},\n\nThank you for applying to the Senior Backend Engineer position at ABC PVT LTD...</p>
                 </div>
               ))}
             </div>

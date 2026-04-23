@@ -42,7 +42,7 @@ const Step1 = ({ onNext }: { onNext: () => void }) => (
     <h2 className="mt-8 font-display font-bold text-[18px] text-ink">Tell us about your organisation</h2>
     <p className="text-[13px] text-ink-muted mt-1">A few details to personalise your workspace.</p>
     <div className="mt-6 space-y-4">
-      <Field label="Organisation name"><input defaultValue="Data Panther" className="input" /></Field>
+      <Field label="Organisation name"><input defaultValue="ABC PVT LTD" className="input" /></Field>
       <Field label="Industry">
         <select className="input" defaultValue="Technology">
           <option>Technology</option><option>Finance</option><option>Healthcare</option><option>Retail</option>
@@ -88,7 +88,7 @@ const Step2 = ({ onNext }: { onNext: () => void }) => (
         <div className="text-xs font-medium text-ink mb-1.5">Live preview</div>
         <div className="rounded-xl border border-ink/10 bg-cream p-4 h-full">
           <div className="h-2 w-2 rounded-full mb-3" style={{ backgroundColor: "#0D1829" }} />
-          <div className="text-[11px] font-bold text-ink">Data Panther</div>
+          <div className="text-[11px] font-bold text-ink">ABC PVT LTD</div>
           <div className="text-[9px] text-ink-muted">Scale your team</div>
           <div className="mt-3 h-12 rounded bg-white border border-ink/10" />
           <div className="mt-2 h-6 rounded text-[9px] font-bold text-white flex items-center justify-center" style={{ backgroundColor: "#0D1829" }}>
