@@ -64,7 +64,7 @@ const VideoInterview = () => {
 
       <div className="flex-1 flex flex-col items-center justify-center p-6 relative overflow-hidden">
         {/* Background glow effects */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] bg-forest/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] bg-coral/10 blur-[120px] rounded-full pointer-events-none" />
 
         {state === "prep" && (
           <div className="max-w-[600px] w-full space-y-12 text-center animate-in fade-in zoom-in-95 duration-700 relative z-10">
@@ -82,7 +82,7 @@ const VideoInterview = () => {
                  <span className="text-xs font-bold text-white/40 uppercase tracking-widest">Question {currentQuestion} of 3</span>
                  <div className="flex gap-1">
                     {[1, 2, 3].map(i => (
-                      <div key={i} className={`h-1 w-4 rounded-full ${i <= currentQuestion ? 'bg-forest' : 'bg-white/10'}`} />
+                      <div key={i} className={`h-1 w-4 rounded-full ${i <= currentQuestion ? 'bg-coral' : 'bg-white/10'}`} />
                     ))}
                  </div>
               </div>
@@ -108,7 +108,7 @@ const VideoInterview = () => {
 
             <div className="max-w-[400px] mx-auto p-4 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md space-y-2">
               <p className="text-[11px] font-bold text-white/80 flex items-center justify-center gap-2">
-                <Lightbulb className="h-3.5 w-3.5 text-lime" /> STAR method: Situation → Task → Action → Result
+                <Lightbulb className="h-3.5 w-3.5 text-amber" /> STAR method: Situation → Task → Action → Result
               </p>
             </div>
 
@@ -160,7 +160,7 @@ const VideoInterview = () => {
              <div className="flex flex-col items-center gap-6">
                 <button
                   onClick={handleNext}
-                  className="h-14 px-10 bg-white text-ink font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-cream transition shadow-xl"
+                  className="h-14 px-10 bg-white text-charcoal font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-cream transition shadow-xl"
                 >
                   Done answering
                 </button>

@@ -19,8 +19,8 @@ const CheckRow = ({ status, label, sublabel }: { status: "success" | "error"; la
       {status === "success" ? <CheckCircle2 className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}
     </div>
     <div className="space-y-0.5">
-      <p className="text-sm font-bold text-ink">{label}</p>
-      <p className="text-[11px] text-ink-muted font-medium">{sublabel}</p>
+      <p className="text-sm font-bold text-charcoal">{label}</p>
+      <p className="text-[11px] text-charcoal-muted font-medium">{sublabel}</p>
     </div>
   </div>
 );
@@ -29,7 +29,7 @@ const DeviceCheck = () => {
   return (
     <CandidateLayout className="bg-[#F5F7FA]">
       <div className="flex-1 flex items-center justify-center p-6">
-        <div className="max-w-[620px] w-full bg-white border border-ink/10 rounded-[28px] p-10 shadow-sm space-y-8 animate-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-[620px] w-full bg-white border border-charcoal/10 rounded-[28px] p-10 shadow-sm space-y-8 animate-in slide-in-from-bottom-4 duration-500">
           <div className="space-y-6">
             <div className="flex items-center gap-1">
               {[
@@ -40,18 +40,18 @@ const DeviceCheck = () => {
               ].map((s, i) => (
                 <div key={s.label} className="flex items-center">
                   <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                    s.active ? "bg-[#0D1829] text-white" : "bg-ink/5 text-ink-muted"
+                    s.active ? "bg-[#0D1829] text-white" : "bg-charcoal/5 text-charcoal-muted"
                   }`}>
                     {s.label}
                   </div>
-                  {i < 3 && <div className="w-4 h-px bg-ink/10 mx-1" />}
+                  {i < 3 && <div className="w-4 h-px bg-charcoal/10 mx-1" />}
                 </div>
               ))}
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-2xl font-display font-bold text-ink leading-tight">Let's check your setup</h1>
-              <p className="text-sm text-ink-muted leading-relaxed">
+              <h1 className="text-2xl font-display font-bold text-charcoal leading-tight">Let's check your setup</h1>
+              <p className="text-sm text-charcoal-muted leading-relaxed">
                 Make sure your camera and microphone are working before you start. Nothing is recorded on this screen.
               </p>
             </div>
@@ -66,7 +66,7 @@ const DeviceCheck = () => {
             </div>
 
             <div className="space-y-4">
-              <div className="aspect-[4/3] bg-ink rounded-2xl flex items-center justify-center relative overflow-hidden group shadow-inner">
+              <div className="aspect-[4/3] bg-charcoal rounded-2xl flex items-center justify-center relative overflow-hidden group shadow-inner">
                 <Video className="h-10 w-10 text-white/20 group-hover:scale-110 transition duration-500" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Your camera preview</p>
@@ -82,14 +82,14 @@ const DeviceCheck = () => {
                   ))}
                 </div>
               </div>
-              <button className="text-[11px] font-bold text-ink-muted hover:text-ink flex items-center gap-1.5 transition">
+              <button className="text-[11px] font-bold text-charcoal-muted hover:text-charcoal flex items-center gap-1.5 transition">
                 Adjust camera settings
               </button>
             </div>
           </div>
 
-          <div className="bg-cream/30 rounded-2xl p-5 space-y-4 border border-ink/5">
-            <h4 className="text-[10px] font-bold text-ink-muted uppercase tracking-widest">Tips for a great interview</h4>
+          <div className="bg-cream/30 rounded-2xl p-5 space-y-4 border border-charcoal/5">
+            <h4 className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">Tips for a great interview</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
               {[
                 "Find a quiet, well-lit space",
@@ -97,25 +97,25 @@ const DeviceCheck = () => {
                 "Speak clearly — no rush",
                 "Don't close browser tab"
               ].map(tip => (
-                <div key={tip} className="flex items-center gap-2.5 text-[11px] font-medium text-ink">
-                  <div className="h-1.5 w-1.5 rounded-full bg-forest shrink-0" />
+                <div key={tip} className="flex items-center gap-2.5 text-[11px] font-medium text-charcoal">
+                  <div className="h-1.5 w-1.5 rounded-full bg-coral shrink-0" />
                   {tip}
                 </div>
               ))}
             </div>
-            <div className="pt-2 border-t border-ink/5 flex items-center gap-2">
-              <Info className="h-3.5 w-3.5 text-ink-muted/60" />
-              <p className="text-[10px] text-ink-muted italic leading-normal">
+            <div className="pt-2 border-t border-charcoal/5 flex items-center gap-2">
+              <Info className="h-3.5 w-3.5 text-charcoal-muted/60" />
+              <p className="text-[10px] text-charcoal-muted italic leading-normal">
                 This interview is AI-evaluated. No human will be watching in real time.
               </p>
             </div>
           </div>
 
           <div className="space-y-4">
-            <Link to="/practice" className="w-full h-12 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-forest-deep transition shadow-lg shadow-[#0D1829]/10">
+            <Link to="/practice" className="w-full h-12 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[#0D1829]/10">
               Continue to practice round <ArrowRight className="h-4 w-4" />
             </Link>
-            <button className="w-full text-xs font-bold text-ink-muted hover:text-ink transition">
+            <button className="w-full text-xs font-bold text-charcoal-muted hover:text-charcoal transition">
               Having trouble? Contact support
             </button>
           </div>
