@@ -33,9 +33,9 @@ const ApplyPage = () => {
               </p>
             </div>
             <div className="pt-4 space-y-4">
-              <Link to="/device-check" className="w-full h-12 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[hsl(var(--charcoal))]/10">
+              <button onClick={() => { localStorage.setItem("candidate_stage", "applied"); window.location.href = "/candidate/mailbox"; }} className="w-full h-12 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[hsl(var(--charcoal))]/10">
                 Proceed to Assessment <ArrowRight className="h-4 w-4" />
-              </Link>
+              </button>
               <p className="text-[11px] text-charcoal-muted/60">Check your inbox — including spam folder.</p>
             </div>
           </div>

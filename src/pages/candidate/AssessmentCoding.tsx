@@ -98,7 +98,7 @@ const AssessmentCoding = () => {
                  <div className="flex items-center gap-3">
                     <button className="h-9 px-4 bg-[#00CC88] text-white text-xs font-bold rounded-lg hover:bg-[#00CC88]/80 transition">Run code</button>
                     <button
-                      onClick={() => navigate("/submission-done")}
+                      onClick={() => navigate("/submission-done?type=coding_done")}
                       className="h-9 px-4 bg-[#2D5BFF] text-white text-xs font-bold rounded-lg hover:bg-[#2D5BFF]/80 transition"
                     >
                       Submit solution

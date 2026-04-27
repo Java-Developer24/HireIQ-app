@@ -67,7 +67,7 @@ const AssessmentMCQ = () => {
       setCurrentQuestion(currentQuestion + 1);
       setSelected("");
     } else {
-      navigate("/interview");
+      navigate("/candidate/submission-done");
     }
   };
 
@@ -131,7 +131,7 @@ const AssessmentMCQ = () => {
                  selected ? "bg-[hsl(var(--charcoal))] hover:bg-charcoal shadow-[hsl(var(--charcoal))]/10" : "bg-charcoal/10 cursor-not-allowed shadow-none"
                }`}
              >
-               {currentQuestion === questions.length - 1 ? "Start Video Interview" : "Next question"} <ArrowRight className="h-4 w-4" />
+               {currentQuestion === questions.length - 1 ? "Complete Assessment" : "Next question"} <ArrowRight className="h-4 w-4" />
              </button>
              <p className="text-center text-[10px] text-charcoal-muted italic font-medium">
                You cannot return to previous questions.
