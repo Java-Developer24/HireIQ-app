@@ -22,43 +22,43 @@ const AssessmentCoding = () => {
       {/* Warning Banner */}
       <div className="bg-amber-soft/90 border-b border-amber-warm/10 py-1.5 px-8 flex items-center justify-center gap-2 flex-none">
         <AlertTriangle className="h-3 w-3 text-amber-warm" />
-        <p className="text-[9px] font-bold text-ink/70 uppercase tracking-widest">Tab switching and copy-paste are monitored during this assessment</p>
+        <p className="text-[9px] font-bold text-charcoal/70 uppercase tracking-widest">Tab switching and copy-paste are monitored during this assessment</p>
       </div>
 
       <div className="flex-1 flex overflow-hidden">
         {/* Left Panel: Problem description */}
-        <div className="w-[42%] bg-white border-r border-ink/10 overflow-y-auto p-8 space-y-8">
+        <div className="w-[42%] bg-white border-r border-charcoal/10 overflow-y-auto p-8 space-y-8">
            <div className="space-y-4">
-              <span className="text-[10px] font-bold text-ink-muted uppercase tracking-widest block">Problem 1</span>
-              <h2 className="text-2xl font-display font-bold text-ink flex items-center gap-3">
-                <Database className="h-6 w-6 text-forest" />
+              <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Problem 1</span>
+              <h2 className="text-2xl font-display font-bold text-charcoal flex items-center gap-3">
+                <Database className="h-6 w-6 text-coral" />
                 Optimise database query
               </h2>
            </div>
 
-           <div className="space-y-6 text-sm text-ink leading-relaxed">
+           <div className="space-y-6 text-sm text-charcoal leading-relaxed">
               <p>
                 Given a <code className="bg-cream px-1.5 py-0.5 rounded font-mono">users</code> table with 10 million rows, write a SQL query that efficiently retrieves all users who registered in the last 30 days, ordered by registration date descending.
               </p>
 
               <div className="space-y-3">
-                 <h4 className="text-xs font-bold text-ink uppercase tracking-wider">Example</h4>
-                 <div className="p-4 bg-cream/30 border border-ink/5 rounded-xl font-mono text-[12px] text-ink-muted">
-                    <p className="font-bold text-ink mb-2">Input:</p>
+                 <h4 className="text-xs font-bold text-charcoal uppercase tracking-wider">Example</h4>
+                 <div className="p-4 bg-cream/30 border border-charcoal/5 rounded-xl font-mono text-[12px] text-charcoal-muted">
+                    <p className="font-bold text-charcoal mb-2">Input:</p>
                     <p>users table with columns: id, email, created_at, status...</p>
                  </div>
-                 <div className="p-4 bg-cream/30 border border-ink/5 rounded-xl font-mono text-[12px] text-ink-muted">
-                    <p className="font-bold text-ink mb-2">Expected Output:</p>
+                 <div className="p-4 bg-cream/30 border border-charcoal/5 rounded-xl font-mono text-[12px] text-charcoal-muted">
+                    <p className="font-bold text-charcoal mb-2">Expected Output:</p>
                     <p>Paginated list of users ordered DESC by created_at...</p>
                  </div>
               </div>
 
               <div className="space-y-3">
-                 <h4 className="text-xs font-bold text-ink uppercase tracking-wider">Constraints</h4>
-                 <ul className="space-y-2 text-xs font-medium text-ink-muted">
-                    <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-forest" /> Use PostgreSQL syntax</li>
-                    <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-forest" /> Query must use index if available</li>
-                    <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-forest" /> Handle 10M rows efficiently</li>
+                 <h4 className="text-xs font-bold text-charcoal uppercase tracking-wider">Constraints</h4>
+                 <ul className="space-y-2 text-xs font-medium text-charcoal-muted">
+                    <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-coral" /> Use PostgreSQL syntax</li>
+                    <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-coral" /> Query must use index if available</li>
+                    <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-coral" /> Handle 10M rows efficiently</li>
                  </ul>
               </div>
            </div>

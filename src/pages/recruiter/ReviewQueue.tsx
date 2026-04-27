@@ -13,17 +13,17 @@ import {
 import { Link } from "react-router-dom";
 
 const ReviewCard = ({ candidate }: { candidate: any }) => (
-  <div className="bg-white border border-ink/10 rounded-[24px] overflow-hidden shadow-sm hover:border-forest/20 transition duration-300">
+  <div className="bg-white border border-charcoal/10 rounded-[24px] overflow-hidden shadow-sm hover:border-coral/20 transition duration-300">
     <div className="flex flex-col lg:flex-row">
       {/* Left: Basic Info */}
-      <div className="p-6 lg:w-[30%] border-b lg:border-b-0 lg:border-r border-ink/5 space-y-4">
+      <div className="p-6 lg:w-[30%] border-b lg:border-b-0 lg:border-r border-charcoal/5 space-y-4">
         <div className="flex items-center gap-4">
           <div className={`h-12 w-12 rounded-full ${candidate.color} flex items-center justify-center text-sm font-bold`}>
             {candidate.initial}
           </div>
           <div>
-            <h3 className="text-base font-bold text-ink">{candidate.name}</h3>
-            <p className="text-[11px] text-ink-muted font-medium">{candidate.role} · {candidate.applied}</p>
+            <h3 className="text-base font-bold text-charcoal">{candidate.name}</h3>
+            <p className="text-[11px] text-charcoal-muted font-medium">{candidate.role} · {candidate.applied}</p>
           </div>
         </div>
 
@@ -33,8 +33,8 @@ const ReviewCard = ({ candidate }: { candidate: any }) => (
             <div className="mt-1.5 px-2 py-0.5 rounded bg-[#FFF4E5] text-[#FF9933] text-[9px] font-black tracking-widest uppercase">HOLD</div>
           </div>
           <div className="space-y-1">
-            <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider block">Review band</span>
-            <span className="text-[11px] font-semibold text-ink">40–75 range</span>
+            <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-wider block">Review band</span>
+            <span className="text-[11px] font-semibold text-charcoal">40–75 range</span>
           </div>
         </div>
 
@@ -47,27 +47,27 @@ const ReviewCard = ({ candidate }: { candidate: any }) => (
       </div>
 
       {/* Centre: AI Reasoning */}
-      <div className="p-6 lg:w-[45%] border-b lg:border-b-0 lg:border-r border-ink/5 space-y-4">
+      <div className="p-6 lg:w-[45%] border-b lg:border-b-0 lg:border-r border-charcoal/5 space-y-4">
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-bold text-ink-muted uppercase tracking-widest">AI reasoning</span>
+          <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">AI reasoning</span>
           <Sparkles className="h-3.5 w-3.5 text-plum" />
         </div>
 
-        <p className="text-[12px] text-ink-muted leading-relaxed font-medium">
+        <p className="text-[12px] text-charcoal-muted leading-relaxed font-medium">
           {candidate.reasoning}
         </p>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             {candidate.strengths.map((s: string) => (
-              <div key={s} className="flex items-center gap-2 text-[11px] font-medium text-ink">
+              <div key={s} className="flex items-center gap-2 text-[11px] font-medium text-charcoal">
                 <CheckCircle2 className="h-3 w-3 text-[#00CC88]" /> {s}
               </div>
             ))}
           </div>
           <div className="space-y-2">
             {candidate.concerns.map((s: string) => (
-              <div key={s} className="flex items-center gap-2 text-[11px] font-medium text-ink">
+              <div key={s} className="flex items-center gap-2 text-[11px] font-medium text-charcoal">
                 <div className="h-1.5 w-1.5 rounded-full bg-amber-warm shrink-0" /> {s}
               </div>
             ))}
@@ -78,19 +78,19 @@ const ReviewCard = ({ candidate }: { candidate: any }) => (
       {/* Right: Actions */}
       <div className="p-6 lg:w-[25%] bg-cream/20 flex flex-col justify-between gap-4">
         <div className="space-y-2">
-          <button className="w-full h-10 rounded-xl border border-forest text-forest text-xs font-bold hover:bg-forest hover:text-white transition duration-200">Advance to video</button>
+          <button className="w-full h-10 rounded-xl border border-coral text-coral text-xs font-bold hover:bg-coral hover:text-white transition duration-200">Advance to video</button>
           <div className="grid grid-cols-2 gap-2">
             <button className="h-10 rounded-xl border border-[#00CC88] text-[#00CC88] text-xs font-bold hover:bg-[#00CC88] hover:text-white transition duration-200">Shortlist</button>
             <button className="h-10 rounded-xl border border-[#FF4D4D] text-[#FF4D4D] text-xs font-bold hover:bg-[#FF4D4D] hover:text-white transition duration-200">Reject</button>
           </div>
-          <Link to={`/candidates/${candidate.id}`} className="text-[11px] font-bold text-ink-muted hover:text-forest flex items-center justify-center gap-1.5 pt-1 transition">
+          <Link to={`/candidates/${candidate.id}`} className="text-[11px] font-bold text-charcoal-muted hover:text-coral flex items-center justify-center gap-1.5 pt-1 transition">
             View full profile <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-[10px] font-bold text-ink-muted uppercase tracking-widest">Reason for decision *</label>
-          <input type="text" placeholder="Add a quick note…" className="w-full h-9 px-3 rounded-lg border border-ink/10 bg-white text-xs focus:outline-none focus:ring-1 focus:ring-forest transition" />
+          <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">Reason for decision *</label>
+          <input type="text" placeholder="Add a quick note…" className="w-full h-9 px-3 rounded-lg border border-charcoal/10 bg-white text-xs focus:outline-none focus:ring-1 focus:ring-coral transition" />
         </div>
       </div>
     </div>
@@ -146,14 +146,14 @@ const ReviewQueue = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h1 className="font-display font-bold text-2xl text-ink">Review queue</h1>
-            <span className="text-sm text-ink-muted mt-1">(3 candidates waiting)</span>
+            <h1 className="font-display font-bold text-2xl text-charcoal">Review queue</h1>
+            <span className="text-sm text-charcoal-muted mt-1">(3 candidates waiting)</span>
           </div>
           <div className="flex items-center gap-3">
-            <select className="h-10 px-3 pr-8 rounded-xl border border-ink/10 bg-white text-sm font-medium focus:outline-none appearance-none">
+            <select className="h-10 px-3 pr-8 rounded-xl border border-charcoal/10 bg-white text-sm font-medium focus:outline-none appearance-none">
               <option>Filter by job: All jobs</option>
             </select>
-            <select className="h-10 px-3 pr-8 rounded-xl border border-ink/10 bg-white text-sm font-medium focus:outline-none appearance-none">
+            <select className="h-10 px-3 pr-8 rounded-xl border border-charcoal/10 bg-white text-sm font-medium focus:outline-none appearance-none">
               <option>Sort: Score high to low</option>
             </select>
           </div>
@@ -165,11 +165,11 @@ const ReviewQueue = () => {
             <div className="h-8 w-8 rounded-full bg-amber-warm/10 flex items-center justify-center text-amber-warm">
               <AlertTriangle className="h-4 w-4" />
             </div>
-            <p className="text-sm font-medium text-ink">
+            <p className="text-sm font-medium text-charcoal">
               These 3 candidates scored 40–75 and were flagged for human review. <span className="font-bold">Average wait: 18 hours.</span>
             </p>
           </div>
-          <button className="text-ink-muted hover:text-ink transition">
+          <button className="text-charcoal-muted hover:text-charcoal transition">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -181,12 +181,12 @@ const ReviewQueue = () => {
           ))}
 
           {/* Empty state hint */}
-          <div className="bg-white/40 border border-dashed border-ink/10 rounded-[24px] p-8 flex flex-col items-center justify-center text-center opacity-60">
-            <div className="h-10 w-10 rounded-full bg-forest/5 flex items-center justify-center text-forest/40 mb-3">
+          <div className="bg-white/40 border border-dashed border-charcoal/10 rounded-[24px] p-8 flex flex-col items-center justify-center text-center opacity-60">
+            <div className="h-10 w-10 rounded-full bg-coral/5 flex items-center justify-center text-coral/40 mb-3">
               <Check className="h-5 w-5" />
             </div>
-            <h4 className="text-sm font-bold text-ink-muted">Queue is clear</h4>
-            <p className="text-xs text-ink-muted mt-1">Last cleared 2 hours ago.</p>
+            <h4 className="text-sm font-bold text-charcoal-muted">Queue is clear</h4>
+            <p className="text-xs text-charcoal-muted mt-1">Last cleared 2 hours ago.</p>
           </div>
         </div>
       </div>

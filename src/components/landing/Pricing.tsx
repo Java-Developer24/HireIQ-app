@@ -30,8 +30,8 @@ export const Pricing = () => {
     <section id="pricing" className="py-24">
       <div className="container max-w-6xl">
         <div className="text-center mb-12">
-          <div className="text-xs font-medium text-ink-muted uppercase tracking-wider">// Pricing //</div>
-          <h2 className="mt-2 font-display font-bold text-4xl sm:text-5xl text-ink">
+          <div className="text-xs font-medium text-charcoal-muted uppercase tracking-wider">// Pricing //</div>
+          <h2 className="mt-2 font-display font-bold text-4xl sm:text-5xl text-charcoal">
             Plans that scale with <span className="italic">your hiring.</span>
           </h2>
         </div>
@@ -44,34 +44,34 @@ export const Pricing = () => {
                 key={p.name}
                 className={
                   isHighlight
-                    ? "rounded-3xl bg-forest text-cream p-8 border-2 border-lime relative"
-                    : "rounded-3xl bg-white border border-ink/10 p-8"
+                    ? "rounded-3xl bg-coral text-cream p-8 border-2 border-amber relative"
+                    : "rounded-3xl bg-white border border-charcoal/10 p-8"
                 }
               >
                 {isHighlight && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-lime text-forest text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber text-coral text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                     Most popular
                   </span>
                 )}
-                <div className={`text-sm font-semibold ${isHighlight ? "text-lime" : "text-ink-muted"}`}>{p.name}</div>
+                <div className={`text-sm font-semibold ${isHighlight ? "text-amber" : "text-charcoal-muted"}`}>{p.name}</div>
                 <div className="mt-3 flex items-end gap-1">
-                  <span className={`font-display font-bold text-4xl ${isHighlight ? "text-cream" : "text-ink"}`}>{p.price}</span>
-                  <span className={`pb-1 text-sm ${isHighlight ? "text-cream/60" : "text-ink-muted"}`}>{p.sub}</span>
+                  <span className={`font-display font-bold text-4xl ${isHighlight ? "text-cream" : "text-charcoal"}`}>{p.price}</span>
+                  <span className={`pb-1 text-sm ${isHighlight ? "text-cream/60" : "text-charcoal-muted"}`}>{p.sub}</span>
                 </div>
                 <Link
                   to="/login"
                   className={
                     isHighlight
-                      ? "mt-6 inline-flex w-full items-center justify-center h-11 rounded-full bg-lime text-forest font-semibold hover:opacity-90 transition"
-                      : "mt-6 inline-flex w-full items-center justify-center h-11 rounded-full bg-forest text-cream font-semibold hover:bg-forest-deep transition"
+                      ? "mt-6 inline-flex w-full items-center justify-center h-11 rounded-full bg-amber text-coral font-semibold hover:opacity-90 transition"
+                      : "mt-6 inline-flex w-full items-center justify-center h-11 rounded-full bg-coral text-cream font-semibold hover:bg-charcoal transition"
                   }
                 >
                   {p.name === "Enterprise" ? "Contact sales" : "Sign up now"}
                 </Link>
                 <ul className="mt-6 space-y-3">
                   {p.features.map((f) => (
-                    <li key={f} className={`flex items-start gap-2 text-sm ${isHighlight ? "text-cream/85" : "text-ink"}`}>
-                      <Check className={`h-4 w-4 flex-none mt-0.5 ${isHighlight ? "text-lime" : "text-forest"}`} strokeWidth={3} />
+                    <li key={f} className={`flex items-start gap-2 text-sm ${isHighlight ? "text-cream/85" : "text-charcoal"}`}>
+                      <Check className={`h-4 w-4 flex-none mt-0.5 ${isHighlight ? "text-amber" : "text-coral"}`} strokeWidth={3} />
                       {f}
                     </li>
                   ))}

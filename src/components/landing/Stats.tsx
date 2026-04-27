@@ -8,11 +8,11 @@ const stats = [
 export const Stats = () => (
   <section className="py-20">
     <div className="container max-w-6xl">
-      <div className="rounded-3xl bg-forest text-cream p-10 grid grid-cols-2 lg:grid-cols-4 gap-8 relative overflow-hidden border border-forest">
+      <div className="rounded-3xl bg-coral text-cream p-10 grid grid-cols-2 lg:grid-cols-4 gap-8 relative overflow-hidden border border-coral">
         <div className="absolute inset-0 grid-bg opacity-20" />
         {stats.map((s) => (
           <div key={s.l} className="relative">
-            <div className="font-display font-bold text-4xl lg:text-5xl text-lime">{s.v}</div>
+            <div className="font-display font-bold text-4xl lg:text-5xl text-amber">{s.v}</div>
             <div className="mt-2 text-sm text-cream/70 max-w-[180px]">{s.l}</div>
           </div>
         ))}

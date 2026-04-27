@@ -41,23 +41,23 @@ const PracticeQuestion = () => {
   return (
     <CandidateLayout className="bg-white">
       {/* Top Progress Bar */}
-      <div className="h-14 border-b border-ink/5 px-8 flex items-center justify-between flex-none">
+      <div className="h-14 border-b border-charcoal/5 px-8 flex items-center justify-between flex-none">
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 text-xs font-bold text-ink-muted">
+          <div className="flex items-center gap-2 text-xs font-bold text-charcoal-muted">
             <span className="text-[#00CC88]">Device check ✓</span>
-            <div className="h-4 w-px bg-ink/10" />
+            <div className="h-4 w-px bg-charcoal/10" />
             <div className="px-2 py-1 bg-[#0D1829] text-white rounded-md text-[10px]">Practice</div>
-            <div className="h-4 w-px bg-ink/10" />
+            <div className="h-4 w-px bg-charcoal/10" />
             <span>Interview (8 questions)</span>
           </div>
         </div>
-        <div className="text-xs font-bold text-ink-muted">
+        <div className="text-xs font-bold text-charcoal-muted">
           Senior Backend Engineer —  HireIQ Partner Solutions
         </div>
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center p-6 bg-[#F5F7FA]">
-        <div className="max-w-[660px] w-full bg-white border border-ink/10 rounded-[32px] p-10 shadow-sm relative overflow-hidden">
+        <div className="max-w-[660px] w-full bg-white border border-charcoal/10 rounded-[32px] p-10 shadow-sm relative overflow-hidden">
           {/* Banner */}
           <div className="absolute top-0 inset-x-0 h-12 bg-amber-soft/50 border-b border-amber-warm/5 flex items-center justify-center gap-2">
             <span className="h-2 w-2 rounded-full bg-amber-warm animate-pulse" />
@@ -66,11 +66,11 @@ const PracticeQuestion = () => {
 
           <div className="mt-8 space-y-8 text-center">
             <div className="space-y-4 pt-4">
-              <span className="text-[10px] font-bold text-ink-muted uppercase tracking-widest block">Practice question</span>
-              <h2 className="text-2xl font-display font-bold text-ink max-w-md mx-auto leading-tight">
+              <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Practice question</span>
+              <h2 className="text-2xl font-display font-bold text-charcoal max-w-md mx-auto leading-tight">
                 Tell us something you enjoy doing outside of work.
               </h2>
-              <button className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-ink/10 text-[11px] font-bold text-ink-muted hover:bg-cream transition">
+              <button className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-charcoal/10 text-[11px] font-bold text-charcoal-muted hover:bg-cream transition">
                 <Volume2 className="h-3.5 w-3.5" /> Replay question audio
               </button>
             </div>
@@ -85,7 +85,7 @@ const PracticeQuestion = () => {
                         fill="transparent"
                         stroke="currentColor"
                         strokeWidth="8"
-                        className="text-ink/5"
+                        className="text-charcoal/5"
                       />
                       <circle
                         cx="72" cy="72" r="64"
@@ -99,8 +99,8 @@ const PracticeQuestion = () => {
                       />
                     </svg>
                     <div className="text-center">
-                      <span className="text-4xl font-display font-bold text-ink block">{countdown}</span>
-                      <span className="text-[9px] font-bold text-ink-muted uppercase">seconds</span>
+                      <span className="text-4xl font-display font-bold text-charcoal block">{countdown}</span>
+                      <span className="text-[9px] font-bold text-charcoal-muted uppercase">seconds</span>
                     </div>
                   </div>
 
@@ -111,7 +111,7 @@ const PracticeQuestion = () => {
                     </div>
                     <button
                       onClick={() => setState("recording")}
-                      className="block mx-auto text-sm font-bold text-ink-muted hover:text-ink transition"
+                      className="block mx-auto text-sm font-bold text-charcoal-muted hover:text-charcoal transition"
                     >
                       Start recording now
                     </button>
@@ -121,7 +121,7 @@ const PracticeQuestion = () => {
 
               {state === "recording" && (
                 <div className="w-full space-y-6 animate-in zoom-in-95 duration-300">
-                  <div className="aspect-video w-full bg-ink rounded-2xl relative overflow-hidden shadow-2xl border border-white/10">
+                  <div className="aspect-video w-full bg-charcoal rounded-2xl relative overflow-hidden shadow-2xl border border-white/10">
                     <video
                       ref={videoRef}
                       autoPlay
@@ -153,11 +153,11 @@ const PracticeQuestion = () => {
 
               {state === "playback" && (
                 <div className="w-full space-y-8 animate-in slide-in-from-bottom-4 duration-500">
-                  <div className="aspect-video w-full bg-ink/5 border border-ink/10 rounded-2xl flex items-center justify-center relative group cursor-pointer shadow-sm">
-                    <div className="h-14 w-14 rounded-full bg-white flex items-center justify-center text-ink shadow-lg group-hover:scale-110 transition">
+                  <div className="aspect-video w-full bg-charcoal/5 border border-charcoal/10 rounded-2xl flex items-center justify-center relative group cursor-pointer shadow-sm">
+                    <div className="h-14 w-14 rounded-full bg-white flex items-center justify-center text-charcoal shadow-lg group-hover:scale-110 transition">
                       <Play className="h-6 w-6 fill-current" />
                     </div>
-                    <div className="absolute bottom-4 left-6 text-[10px] font-bold text-ink-muted uppercase tracking-widest">
+                    <div className="absolute bottom-4 left-6 text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">
                       Review your practice attempt
                     </div>
                   </div>
@@ -166,18 +166,18 @@ const PracticeQuestion = () => {
                     <div className="flex flex-col md:flex-row items-center justify-center gap-3">
                       <button
                         onClick={() => { setState("prep"); setCountdown(30); }}
-                        className="h-14 px-8 rounded-2xl border border-ink/10 bg-white text-ink font-bold flex items-center gap-2 hover:bg-cream transition w-full md:w-auto"
+                        className="h-14 px-8 rounded-2xl border border-charcoal/10 bg-white text-charcoal font-bold flex items-center gap-2 hover:bg-cream transition w-full md:w-auto"
                       >
                         <RefreshCw className="h-4 w-4" /> Re-record
                       </button>
                       <Link
                         to="/assessment-mcq"
-                        className="h-14 px-10 rounded-2xl bg-[#0D1829] text-white font-bold flex items-center gap-2 hover:bg-forest-deep transition shadow-xl shadow-[#0D1829]/10 w-full md:w-auto justify-center"
+                        className="h-14 px-10 rounded-2xl bg-[#0D1829] text-white font-bold flex items-center gap-2 hover:bg-charcoal transition shadow-xl shadow-[#0D1829]/10 w-full md:w-auto justify-center"
                       >
                         I'm ready — start assessment <ArrowRight className="h-4 w-4" />
                       </Link>
                     </div>
-                    <p className="text-[11px] text-ink-muted italic">
+                    <p className="text-[11px] text-charcoal-muted italic">
                       Once you start, you cannot return to previous questions.
                     </p>
                   </div>
