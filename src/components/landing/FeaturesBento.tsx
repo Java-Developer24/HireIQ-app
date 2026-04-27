@@ -5,7 +5,7 @@ export const FeaturesBento = () => {
     <section className="py-24">
       <div className="container max-w-6xl">
         <div className="text-center mb-12">
-          <div className="text-xs font-medium text-charcoal-muted uppercase tracking-wider">// Features //</div>
+          <div className="text-lg font-medium text-charcoal-muted uppercase tracking-wider">// Features //</div>
           <h2 className="mt-2 font-display font-bold text-4xl sm:text-5xl text-charcoal">
             Every part of screening, <span className="italic text-coral">automated.</span>
           </h2>
@@ -23,20 +23,20 @@ export const FeaturesBento = () => {
                 <h3 className="font-display font-bold text-2xl leading-tight">
                   Personalised video interview for every candidate.
                 </h3>
-                <p className="mt-3 text-sm text-cream/70">
+                <p className="mt-3 text-lg text-cream/70">
                   Questions are generated from the candidate's resume against your JD — no two interviews are identical.
                 </p>
               </div>
               <div className="bg-white/5 backdrop-blur border border-cream/10 rounded-2xl p-5">
-                <div className="text-[11px] uppercase tracking-wider text-amber mb-2">Question 3 of 6</div>
-                <p className="text-sm text-cream leading-relaxed">
+                <div className="text-[13px] uppercase tracking-wider text-amber mb-2">Question 3 of 6</div>
+                <p className="text-lg text-cream leading-relaxed">
                   "You mentioned scaling Postgres at TruePay. Walk me through how you handled the read-replica lag during the Q3 launch."
                 </p>
                 <div className="mt-4 flex items-center gap-2">
                   <div className="flex-1 h-1.5 bg-cream/10 rounded-full overflow-hidden">
                     <div className="h-full w-1/2 bg-amber rounded-full" />
                   </div>
-                  <span className="text-[10px] text-cream/60">02:14</span>
+                  <span className="text-[12px] text-cream/60">02:14</span>
                 </div>
               </div>
             </div>
@@ -58,6 +58,6 @@ const FeatureCard = ({ icon: Icon, title, body }: { icon: any; title: string; bo
       <Icon className="h-5 w-5" />
     </div>
     <h3 className="font-display font-semibold text-lg text-charcoal leading-tight">{title}</h3>
-    <p className="mt-2 text-sm text-charcoal-muted">{body}</p>
+    <p className="mt-2 text-lg text-charcoal-muted">{body}</p>
   </div>
 );

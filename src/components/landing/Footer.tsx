@@ -7,7 +7,7 @@ export const Footer = () => (
       <div className="grid md:grid-cols-4 gap-10">
         <div>
           <HireIqLogo />
-          <p className="mt-4 text-sm text-charcoal-muted max-w-[220px]">
+          <p className="mt-4 text-lg text-charcoal-muted max-w-[220px]">
             Autonomous hiring for teams who'd rather build than screen.
           </p>
           <div className="mt-5 flex gap-3">
@@ -22,7 +22,7 @@ export const Footer = () => (
         <FooterCol title="Company" links={["About", "Customers", "Careers", "Blog"]} />
         <FooterCol title="Legal" links={["Privacy", "Terms", "DPA", "Security"]} />
       </div>
-      <div className="mt-14 pt-6 border-t border-charcoal/10 text-xs text-charcoal-muted text-center">
+      <div className="mt-14 pt-6 border-t border-charcoal/10 text-lg text-charcoal-muted text-center">
         © 2025 HireIQ · Built by  HireIQ Partner Solutions · Hyderabad, India
       </div>
     </div>
@@ -31,10 +31,10 @@ export const Footer = () => (
 
 const FooterCol = ({ title, links }: { title: string; links: string[] }) => (
   <div>
-    <div className="text-sm font-semibold text-charcoal mb-4">{title}</div>
+    <div className="text-lg font-semibold text-charcoal mb-4">{title}</div>
     <ul className="space-y-2.5">
       {links.map((l) => (
-        <li key={l}><a href="#" className="text-sm text-charcoal-muted hover:text-charcoal transition">{l}</a></li>
+        <li key={l}><a href="#" className="text-lg text-charcoal-muted hover:text-charcoal transition">{l}</a></li>
       ))}
     </ul>
   </div>

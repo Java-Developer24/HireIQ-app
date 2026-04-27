@@ -16,7 +16,7 @@ export const FinalCta = () => (
           >
             Start hiring smarter <ArrowRight className="h-4 w-4" />
           </Link>
-          <p className="mt-4 text-xs text-cream/60">
+          <p className="mt-4 text-lg text-cream/60">
             No credit card · Cancel anytime · 10-minute setup
           </p>
         </div>

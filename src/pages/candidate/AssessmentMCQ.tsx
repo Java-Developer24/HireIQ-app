@@ -128,7 +128,7 @@ const AssessmentMCQ = () => {
                onClick={handleNext}
                disabled={!selected}
                className={`w-full h-12 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition shadow-lg ${
-                 selected ? "bg-[#0D1829] hover:bg-charcoal shadow-[#0D1829]/10" : "bg-charcoal/10 cursor-not-allowed shadow-none"
+                 selected ? "bg-[hsl(var(--charcoal))] hover:bg-charcoal shadow-[hsl(var(--charcoal))]/10" : "bg-charcoal/10 cursor-not-allowed shadow-none"
                }`}
              >
                {currentQuestion === questions.length - 1 ? "Start Video Interview" : "Next question"} <ArrowRight className="h-4 w-4" />
