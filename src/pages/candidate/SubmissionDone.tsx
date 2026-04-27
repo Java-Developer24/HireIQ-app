@@ -1,32 +1,60 @@
 import { CandidateLayout } from "@/components/layout/CandidateLayout";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   CheckCircle2,
-  Mail,
   Clock,
-  Lock,
   Check,
-  ExternalLink,
   Sparkles
 } from "lucide-react";
+import { CandidateJourneyStep, getJourneyCompletionStage, getJobById, setStoredCandidateStage } from "@/lib/candidateFlow";
 
 const SubmissionDone = () => {
-  const [searchParams] = useSearchParams();
-  const type = searchParams.get("type");
+  const { step } = useParams();
   const navigate = useNavigate();
+  const currentStep: CandidateJourneyStep =
+    step === "assessment" || step === "video" || step === "coding" || step === "application"
+      ? step
+      : "application";
+  const job = getJobById();
+
+  const content = {
+    application: {
+      heading: "Application submitted",
+      body: `Your application for ${job.title} has been submitted successfully.`,
+      completedLabel: "Application form completed",
+      nextLine: "You will now continue directly into the assessment flow.",
+      doneHref: "/device-check/assessment",
+    },
+    assessment: {
+      heading: "Assessment submitted",
+      body: `Your assessment responses for ${job.title} have been submitted successfully.`,
+      completedLabel: "Skills assessment completed",
+      nextLine: "You will now continue directly into the video interview flow.",
+      doneHref: "/device-check/video",
+    },
+    video: {
+      heading: "Interview submitted",
+      body: `Your video interview responses for ${job.title} have been submitted successfully.`,
+      completedLabel: "Video interview completed",
+      nextLine: "You will now continue directly into the machine coding round.",
+      doneHref: "/device-check/coding",
+    },
+    coding: {
+      heading: "Coding round submitted",
+      body: `Your machine coding submission for ${job.title} has been sent successfully.`,
+      completedLabel: "Machine coding round completed",
+      nextLine: "Your application now moves into final review.",
+      doneHref: "/candidate/tracking",
+    },
+  }[currentStep];
 
   const handleDone = () => {
-    if (type) {
-      localStorage.setItem("candidate_stage", type);
-      if (type === "coding_done") navigate("/candidate/tracking");
-      else navigate("/candidate/mailbox");
-    } else {
-      navigate("/candidate/dashboard");
-    }
+    setStoredCandidateStage(getJourneyCompletionStage(currentStep));
+    navigate(content.doneHref);
   };
 
   return (
-    <CandidateLayout className="bg-[#F5F7FA]" hideHeader>
+    <CandidateLayout className="bg-cream" hideHeader>
       <div className="flex-1 flex flex-col items-center justify-center p-4">
         <div className="max-w-[440px] w-full animate-in zoom-in duration-700">
           <div className="bg-white border border-charcoal/10 rounded-[24px] overflow-hidden shadow-sm relative">
@@ -39,39 +67,21 @@ const SubmissionDone = () => {
                   <CheckCircle2 className="h-8 w-8 relative z-10" />
                 </div>
                 <div className="space-y-1">
-                  <h1 className="text-2xl font-display font-bold text-charcoal tracking-tight">You're all done, Jordan!</h1>
+                  <h1 className="text-2xl font-display font-bold text-charcoal tracking-tight">{content.heading}</h1>
                   <p className="text-[13px] text-charcoal-muted leading-relaxed max-w-[340px] mx-auto">
-                    Your responses have been submitted for <span className="font-bold text-charcoal">Senior Backend Engineer</span> at <span className="font-bold text-charcoal"> HireIQ Partner Solutions</span>.
+                    {content.body}
                   </p>
                 </div>
               </div>
 
               <div className="bg-cream/30 rounded-xl p-4 text-left space-y-3 border border-charcoal/5">
                 <h4 className="text-[9px] font-bold text-charcoal-muted uppercase tracking-widest">What you completed</h4>
-                {type === "mcq_done" && (
-                  <div className="flex items-center gap-3">
-                    <div className="h-4 w-4 rounded-full bg-[#00CC88]/10 text-[#00CC88] flex items-center justify-center shrink-0">
-                      <Check className="h-2.5 w-2.5" />
-                    </div>
-                    <span className="text-[12px] font-semibold text-charcoal">Skills assessment completed</span>
+                <div className="flex items-center gap-3">
+                  <div className="h-4 w-4 rounded-full bg-[#00CC88]/10 text-[#00CC88] flex items-center justify-center shrink-0">
+                    <Check className="h-2.5 w-2.5" />
                   </div>
-                )}
-                {type === "video_done" && (
-                  <div className="flex items-center gap-3">
-                    <div className="h-4 w-4 rounded-full bg-[#00CC88]/10 text-[#00CC88] flex items-center justify-center shrink-0">
-                      <Check className="h-2.5 w-2.5" />
-                    </div>
-                    <span className="text-[12px] font-semibold text-charcoal">Video interview completed</span>
-                  </div>
-                )}
-                {type === "coding_done" && (
-                  <div className="flex items-center gap-3">
-                    <div className="h-4 w-4 rounded-full bg-[#00CC88]/10 text-[#00CC88] flex items-center justify-center shrink-0">
-                      <Check className="h-2.5 w-2.5" />
-                    </div>
-                    <span className="text-[12px] font-semibold text-charcoal">Machine coding round completed</span>
-                  </div>
-                )}
+                  <span className="text-[12px] font-semibold text-charcoal">{content.completedLabel}</span>
+                </div>
               </div>
 
               <div className="text-left space-y-4 pt-1">
@@ -79,31 +89,17 @@ const SubmissionDone = () => {
                 <div className="space-y-3">
                    <div className="flex gap-3">
                       <div className="h-8 w-8 rounded-lg bg-coral/5 flex items-center justify-center text-coral shrink-0">
-                        <Mail className="h-4 w-4" />
-                      </div>
-                      <div className="space-y-0.5">
-                        <p className="text-[12px] font-bold text-charcoal">Results sent to priya@email.com</p>
-                        <p className="text-[10px] text-charcoal-muted leading-tight">Check your inbox (and spam folder)</p>
-                      </div>
-                   </div>
-                   <div className="flex gap-3">
-                      <div className="h-8 w-8 rounded-lg bg-coral/5 flex items-center justify-center text-coral shrink-0">
                         <Clock className="h-4 w-4" />
                       </div>
                       <div className="space-y-0.5">
-                        <p className="text-[12px] font-bold text-charcoal">Expected response within 5 business days</p>
-                        <p className="text-[10px] text-charcoal-muted leading-tight">The team is reviewing candidates now</p>
+                        <p className="text-[12px] font-bold text-charcoal">{content.nextLine}</p>
+                        <p className="text-[10px] text-charcoal-muted leading-tight">You can return to the candidate portal at any time.</p>
                       </div>
                    </div>
                 </div>
               </div>
 
               <button onClick={handleDone} className="w-full h-11 mb-4 rounded-xl bg-charcoal text-white font-bold text-sm hover:bg-charcoal/90 transition shadow-sm">Done</button>
-              <div className="pt-4 border-t border-charcoal/5">
-                <button className="text-[10px] font-bold text-charcoal-muted hover:text-charcoal flex items-center gap-1.5 mx-auto transition">
-                  Privacy policy & data deletion <ExternalLink className="h-2.5 w-2.5" />
-                </button>
-              </div>
             </div>
           </div>
 

@@ -1,15 +1,54 @@
 import { CandidateLayout } from "@/components/layout/CandidateLayout";
 import {
   CheckCircle2,
-  Monitor,
-  Mic,
-  Wifi,
   Video,
   ArrowRight,
   Info,
   AlertCircle
 } from "lucide-react";
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+const stepConfig = {
+  assessment: {
+    title: "Check your setup before the skills assessment",
+    description: "Confirm that your browser, microphone, and camera are ready before you begin the assessment round.",
+    buttonLabel: "Continue to assessment",
+    nextHref: "/assessment-mcq",
+    tips: [
+      "Find a quiet place with a stable connection",
+      "Keep this browser tab open during the assessment",
+      "Allow microphone and camera access when prompted",
+      "Have 20 minutes available before you begin",
+    ],
+    progressLabels: ["Device check", "Assessment","Video Interview","Machine Coding", "Done"],
+  },
+  video: {
+    title: "Check your setup before the video interview",
+    description: "Your next screen lets you test a short practice recording before moving into the live interview questions.",
+    buttonLabel: "Continue to practice recording",
+    nextHref: "/practice",
+    tips: [
+      "Use a well-lit space with your face centered in frame",
+      "Speak naturally and keep your answers concise",
+      "Allow both camera and microphone access",
+      "Stay on this device for the full interview session",
+    ],
+    progressLabels: ["Device check", "Practice", "Interview", "Done"],
+  },
+  coding: {
+    title: "Check your setup before the machine coding round",
+    description: "Make sure your device, browser permissions, and environment are ready before the timed coding exercise starts.",
+    buttonLabel: "Continue to coding round",
+    nextHref: "/assessment-coding",
+    tips: [
+      "Close unrelated tabs before you start",
+      "Keep your microphone and camera enabled for verification",
+      "Set aside uninterrupted time for the full round",
+      "Use a stable internet connection during submission",
+    ],
+    progressLabels: ["Device check", "Coding", "Done"],
+  },
+} as const;
 
 const CheckRow = ({ status, label, sublabel }: { status: "success" | "error"; label: string; sublabel: string }) => (
   <div className="flex items-center gap-4 group">
@@ -27,30 +66,25 @@ const CheckRow = ({ status, label, sublabel }: { status: "success" | "error"; la
 
 const DeviceCheck = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const type = searchParams.get('type') || 'mcq';
+  const { step } = useParams();
+  const currentStep = "assessment";
+  const config = stepConfig[currentStep];
 
   const handleContinue = () => {
-    if (type === 'coding') {
-      navigate('/assessment-coding');
-    } else if (type === 'video') {
-      navigate('/video-interview');
-    } else {
-      navigate('/assessment-mcq');
-    }
+    navigate(config.nextHref);
   };
 
   return (
-    <CandidateLayout className="bg-[#F5F7FA]">
+    <CandidateLayout className="bg-cream" backHref="/candidate/jobs" backLabel="Back to jobs">
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="max-w-[620px] w-full bg-white border border-charcoal/10 rounded-[28px] p-10 shadow-sm space-y-8 animate-in slide-in-from-bottom-4 duration-500">
           <div className="space-y-6">
             <div className="flex items-center gap-1">
               {[
-                { label: "Device check", active: true },
-                { label: "Assessment" },
-                { label: "Interview" },
-                { label: "Done" }
+                ...config.progressLabels.map((label, index) => ({
+                  label,
+                  active: index === 0,
+                })),
               ].map((s, i) => (
                 <div key={s.label} className="flex items-center">
                   <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
@@ -58,16 +92,14 @@ const DeviceCheck = () => {
                   }`}>
                     {s.label}
                   </div>
-                  {i < 3 && <div className="w-4 h-px bg-charcoal/10 mx-1" />}
+                  {i < config.progressLabels.length - 1 && <div className="w-4 h-px bg-charcoal/10 mx-1" />}
                 </div>
               ))}
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-2xl font-display font-bold text-charcoal leading-tight">Let's check your setup</h1>
-              <p className="text-sm text-charcoal-muted leading-relaxed">
-                Make sure your camera and microphone are working before you start. Nothing is recorded on this screen.
-              </p>
+              <h1 className="text-2xl font-display font-bold text-charcoal leading-tight">{config.title}</h1>
+              <p className="text-sm text-charcoal-muted leading-relaxed">{config.description}</p>
             </div>
           </div>
 
@@ -103,14 +135,9 @@ const DeviceCheck = () => {
           </div>
 
           <div className="bg-cream/30 rounded-2xl p-5 space-y-4 border border-charcoal/5">
-            <h4 className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">Tips for a great interview</h4>
+            <h4 className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest">Before you continue</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-              {[
-                "Find a quiet, well-lit space",
-                "Position camera at eye level",
-                "Speak clearly — no rush",
-                "Don't close browser tab"
-              ].map(tip => (
+              {config.tips.map((tip) => (
                 <div key={tip} className="flex items-center gap-2.5 text-[11px] font-medium text-charcoal">
                   <div className="h-1.5 w-1.5 rounded-full bg-coral shrink-0" />
                   {tip}
@@ -120,14 +147,14 @@ const DeviceCheck = () => {
             <div className="pt-2 border-t border-charcoal/5 flex items-center gap-2">
               <Info className="h-3.5 w-3.5 text-charcoal-muted/60" />
               <p className="text-[10px] text-charcoal-muted italic leading-normal">
-                This interview is AI-evaluated. No human will be watching in real time.
+                This screen only checks readiness. No responses are recorded here.
               </p>
             </div>
           </div>
 
           <div className="space-y-4">
             <button onClick={handleContinue} className="w-full h-12 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[hsl(var(--charcoal))]/10">
-              Continue to practice round <ArrowRight className="h-4 w-4" />
+              {config.buttonLabel} <ArrowRight className="h-4 w-4" />
             </button>
             <button className="w-full text-xs font-bold text-charcoal-muted hover:text-charcoal transition">
               Having trouble? Contact support

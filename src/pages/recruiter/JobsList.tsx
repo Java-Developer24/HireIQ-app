@@ -1,6 +1,7 @@
 import { RecruiterLayout } from "@/components/layout/RecruiterLayout";
 import { Search, MapPin, Clock, Briefcase, MoreHorizontal, Link as LinkIcon, Plus, Grid, List as ListIcon, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { recruiterJobs } from "@/lib/recruiterMock";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,7 +34,7 @@ const StatusBadge = ({ status, pending }: { status: string; pending?: number }) 
 };
 
 const JobCard = ({ job }: { job: any }) => (
-  <div className={`bg-white border border-charcoal/10 rounded-2xl p-5 hover:shadow-sm transition group ${job.status === "Paused" ? "opacity-75" : ""}`}>
+  <Link to={`/jobs/${job.id}`} className={`block bg-white border border-charcoal/10 rounded-2xl p-5 hover:shadow-sm transition group ${job.status === "Paused" ? "opacity-75" : ""}`}>
     <div className="flex justify-between items-start mb-4">
       <div>
         <div className="flex items-center gap-2">
@@ -43,21 +44,21 @@ const JobCard = ({ job }: { job: any }) => (
         <div className="flex items-center gap-3 mt-1.5 text-xs text-charcoal-muted">
           <div className="flex items-center gap-1">
             <Briefcase className="h-3.5 w-3.5" />
-            <span>Engineering · Remote · Full-time</span>
+            <span>{job.department} · {job.workType} · {job.employmentType}</span>
           </div>
         </div>
         <div className="flex items-center gap-1 mt-1 text-[11px] text-charcoal-muted/70">
           <MapPin className="h-3 w-3" />
-          <span>Hyderabad, India · Posted 5 days ago</span>
+          <span>{job.location} · Posted {job.postedAgo}</span>
         </div>
       </div>
       <div className="flex items-center gap-1">
-        <button className="p-1.5 rounded-lg hover:bg-cream/60 text-charcoal-muted hover:text-charcoal transition">
-          <LinkIcon className="h-4 w-4" />
-        </button>
+            <button onClick={(e) => e.preventDefault()} className="p-1.5 rounded-lg hover:bg-cream/60 text-charcoal-muted hover:text-charcoal transition">
+              <LinkIcon className="h-4 w-4" />
+            </button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="p-1.5 rounded-lg hover:bg-cream/60 text-charcoal-muted hover:text-charcoal transition">
+            <button onClick={(e) => e.preventDefault()} className="p-1.5 rounded-lg hover:bg-cream/60 text-charcoal-muted hover:text-charcoal transition">
               <MoreHorizontal className="h-4 w-4" />
             </button>
           </DropdownMenuTrigger>
@@ -90,20 +91,15 @@ const JobCard = ({ job }: { job: any }) => (
           <div className="text-sm font-bold text-coral">{job.shortlisted}</div>
         </div>
       </div>
-      <Link to={`/jobs/${job.id}/pipeline`} className="block">
+      <div className="block">
         <StatusBadge status={job.status} pending={job.pending} />
-      </Link>
+      </div>
     </div>
-  </div>
+  </Link>
 );
 
 const JobsList = () => {
-  const jobs = [
-    { id: 1, title: "Senior Backend Engineer", applied: 24, inProgress: 18, shortlisted: 3, pending: 2, status: "Active" },
-    { id: 2, title: "Product Manager", applied: 31, inProgress: 20, shortlisted: 5, pending: 5, status: "Active" },
-    { id: 3, title: "Data Analyst", applied: 12, inProgress: 8, shortlisted: 2, pending: 0, status: "Active" },
-    { id: 4, title: "Sales Executive", applied: 19, inProgress: 14, shortlisted: 4, pending: 0, status: "Paused" },
-  ];
+  const navigate = useNavigate();
 
   return (
     <RecruiterLayout title="Jobs">
@@ -171,17 +167,13 @@ const JobsList = () => {
 
         {/* Grid */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-          {jobs.map((job) => (
+          {recruiterJobs.map((job) => (
             <JobCard key={job.id} job={job} />
-          ))}
-          {/* Duplicate cards for demo if needed */}
-          {jobs.slice(0, 2).map((job) => (
-            <JobCard key={`dup-${job.id}`} job={job} />
           ))}
         </div>
 
         <div className="pt-4 flex flex-col items-center gap-3">
-          <p className="text-xs text-charcoal-muted">Showing 6 of 14 jobs</p>
+          <p className="text-xs text-charcoal-muted">Showing {recruiterJobs.length} active demo jobs</p>
           <button className="px-6 py-2 rounded-xl border border-charcoal/10 bg-white text-xs font-bold text-charcoal hover:bg-cream/40 transition">
             Load more
           </button>

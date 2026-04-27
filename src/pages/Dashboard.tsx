@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AlertTriangle, ArrowRight } from "lucide-react";
 import { RecruiterLayout } from "@/components/layout/RecruiterLayout";
+import { recruiterJobs } from "@/lib/recruiterMock";
 
 const Metric = ({ label, value, tone }: { label: string; value: string; tone?: "good" | "bad" }) => (
   <div className="rounded-2xl border border-charcoal/10 bg-white p-5">
@@ -16,13 +17,6 @@ const StatusPill = ({ s }: { s: "Active" | "Paused" }) => (
   </span>
 );
 
-const jobs = [
-  { title: "Senior Backend Engineer", applied: 24, video: 18, shortlisted: 3, pending: 2, status: "Active" as const },
-  { title: "Product Manager", applied: 31, video: 20, shortlisted: 5, pending: 0, status: "Active" as const },
-  { title: "Data Analyst", applied: 12, video: 8, shortlisted: 2, pending: 1, status: "Active" as const },
-  { title: "Sales Executive", applied: 19, video: 14, shortlisted: 4, pending: 0, status: "Paused" as const },
-];
-
 const feed = [
   { dot: "bg-destructive", text: "Auto-rejected Ahmed S. — score 31 · Senior Backend Engineer", time: "2 min ago" },
   { dot: "bg-blue-500", text: "Sent video invite to Jordan M. — score 74", time: "8 min ago" },
@@ -32,6 +26,7 @@ const feed = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   return (
     <RecruiterLayout title="Dashboard">
       <div className="p-8 space-y-6">
@@ -54,25 +49,29 @@ const Dashboard = () => {
           <div className="lg:col-span-3 rounded-2xl bg-white border border-charcoal/10 overflow-hidden">
             <div className="px-5 py-4 border-b border-charcoal/10 flex items-center justify-between">
               <h3 className="font-display font-bold text-base text-charcoal">Active jobs</h3>
-              <button className="text-xs text-coral font-semibold hover:underline">View all</button>
+              <button onClick={() => navigate("/jobs")} className="text-xs text-coral font-semibold hover:underline">View all</button>
             </div>
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left text-[11px] uppercase tracking-wider text-charcoal-muted">
                   <th className="px-5 py-3 font-medium">Job title</th>
+                  <th className="px-3 py-3 font-medium text-center">Candidates</th>
                   <th className="px-3 py-3 font-medium text-center">Applied</th>
                   <th className="px-3 py-3 font-medium text-center">Video done</th>
+                  <th className="px-3 py-3 font-medium text-center">AI rejected</th>
                   <th className="px-3 py-3 font-medium text-center">Shortlist</th>
                   <th className="px-3 py-3 font-medium text-center">Pending</th>
                   <th className="px-5 py-3 font-medium">Status</th>
                 </tr>
               </thead>
               <tbody>
-                {jobs.map((j) => (
-                  <tr key={j.title} className="border-t border-charcoal/5 hover:bg-cream/40 cursor-pointer transition">
+                {recruiterJobs.map((j) => (
+                  <tr key={j.id} onClick={() => navigate(`/jobs/${j.id}`)} className="border-t border-charcoal/5 hover:bg-cream/40 cursor-pointer transition">
                     <td className="px-5 py-4 font-medium text-charcoal">{j.title}</td>
+                    <td className="px-3 py-4 text-center text-charcoal">{j.candidates}</td>
                     <td className="px-3 py-4 text-center text-charcoal">{j.applied}</td>
                     <td className="px-3 py-4 text-center text-charcoal">{j.video}</td>
+                    <td className="px-3 py-4 text-center text-destructive font-semibold">{j.aiRejected}</td>
                     <td className="px-3 py-4 text-center text-charcoal font-semibold">{j.shortlisted}</td>
                     <td className="px-3 py-4 text-center">
                       {j.pending > 0 ? (

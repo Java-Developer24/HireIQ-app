@@ -44,6 +44,18 @@ const CreateJobWizard = () => {
   const [step, setStep] = useState(1);
   const [analyzing, setAnalyzing] = useState(false);
   const [analyzed, setAnalyzed] = useState(false);
+  const [responsibilities, setResponsibilities] = useState([
+    "Design and scale backend services",
+    "Work with product and AI teams on platform workflows",
+  ]);
+  const [mustHaves, setMustHaves] = useState([
+    "Python",
+    "Distributed systems",
+    "PostgreSQL",
+  ]);
+  const [mcqQuestions, setMcqQuestions] = useState(8);
+  const [videoQuestions, setVideoQuestions] = useState(6);
+  const [codingQuestions, setCodingQuestions] = useState(1);
   const navigate = useNavigate();
 
   const handleAnalyse = () => {
@@ -117,6 +129,9 @@ const CreateJobWizard = () => {
                     <select className="w-full h-11 px-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition appearance-none">
                       <option>Engineering</option>
                       <option>Product</option>
+                      <option>Design</option>
+                      <option>Operations</option>
+                      <option>Sales</option>
                     </select>
                   </div>
                   <div className="space-y-1.5">
@@ -139,11 +154,81 @@ const CreateJobWizard = () => {
                     <select className="w-full h-11 px-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition appearance-none">
                       <option>Full-time</option>
                       <option>Contract</option>
+                      <option>Internship</option>
                     </select>
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-charcoal uppercase tracking-tight">Internal reference</label>
                     <input type="text" placeholder="Optional" className="w-full h-11 px-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition" />
+                  </div>
+                  <div className="col-span-2 space-y-1.5">
+                    <label className="text-xs font-bold text-charcoal uppercase tracking-tight">Role family *</label>
+                    <div className="grid grid-cols-4 gap-2">
+                      {["Backend", "Frontend", "Full stack", "Platform", "Product", "Analytics", "Operations", "Custom"].map((role) => (
+                        <button
+                          key={role}
+                          className={`h-10 rounded-xl border text-xs font-bold transition ${
+                            role === "Backend" ? "border-coral bg-coral text-cream" : "border-charcoal/10 bg-white text-charcoal-muted hover:text-charcoal"
+                          }`}
+                        >
+                          {role}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6 pt-2 border-t border-charcoal/5">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold text-charcoal uppercase tracking-tight">Key responsibilities</label>
+                      <button
+                        onClick={() => setResponsibilities([...responsibilities, "Add another responsibility"])}
+                        className="text-[11px] font-bold text-coral hover:underline"
+                      >
+                        + Add more
+                      </button>
+                    </div>
+                    <div className="space-y-2">
+                      {responsibilities.map((item, index) => (
+                        <input
+                          key={`${item}-${index}`}
+                          value={item}
+                          onChange={(e) => {
+                            const next = [...responsibilities];
+                            next[index] = e.target.value;
+                            setResponsibilities(next);
+                          }}
+                          className="w-full h-10 px-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold text-charcoal uppercase tracking-tight">Must-have skills</label>
+                      <button
+                        onClick={() => setMustHaves([...mustHaves, "New skill"])}
+                        className="text-[11px] font-bold text-coral hover:underline"
+                      >
+                        + Add more
+                      </button>
+                    </div>
+                    <div className="space-y-2">
+                      {mustHaves.map((item, index) => (
+                        <input
+                          key={`${item}-${index}`}
+                          value={item}
+                          onChange={(e) => {
+                            const next = [...mustHaves];
+                            next[index] = e.target.value;
+                            setMustHaves(next);
+                          }}
+                          className="w-full h-10 px-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition"
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -210,6 +295,14 @@ const CreateJobWizard = () => {
                       placeholder="Paste your job description text here…"
                       className="w-full h-40 p-4 rounded-xl border border-charcoal/10 bg-cream/10 text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition resize-none"
                     ></textarea>
+
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Hiring notes for AI</label>
+                      <textarea
+                        placeholder="Add anything the AI should prioritize, avoid, or probe for in candidates..."
+                        className="w-full h-28 p-4 rounded-xl border border-charcoal/10 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 transition resize-none"
+                      />
+                    </div>
 
                     <button onClick={handleAnalyse} className="w-full h-11 bg-charcoal text-cream font-bold rounded-xl hover:bg-coral transition">
                       Analyse JD
@@ -291,6 +384,10 @@ const CreateJobWizard = () => {
                               <span className="h-5 px-1.5 rounded bg-amber-soft text-amber-warm text-[9px] font-bold flex items-center shrink-0">TECHNICAL</span>
                               <p className="text-[12px] text-charcoal leading-relaxed">How would you design a rate-limited REST API at scale?</p>
                             </div>
+                            <div className="flex gap-3 items-start">
+                              <span className="h-5 px-1.5 rounded bg-coral/10 text-coral text-[9px] font-bold flex items-center shrink-0">ROLE FIT</span>
+                              <p className="text-[12px] text-charcoal leading-relaxed">Which role responsibilities from the JD should this candidate own in their first 90 days?</p>
+                            </div>
                           </div>
                           <div className="p-3 rounded-xl bg-cream/30 border border-charcoal/5 flex items-start gap-2.5">
                             <Info className="h-4 w-4 text-charcoal-muted shrink-0 mt-0.5" />
@@ -329,8 +426,8 @@ const CreateJobWizard = () => {
                   <p className="text-sm text-charcoal-muted mt-1">Set once. The AI runs autonomously — you only review edge cases.</p>
                 </div>
 
-                <div className="grid grid-cols-3 gap-8">
-                  <div className="space-y-6">
+                <div className="grid gap-6 xl:grid-cols-3">
+                  <div className="space-y-6 rounded-2xl border border-charcoal/10 bg-cream/30 p-6">
                     <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Resume match weights</label>
                     {[
                       { label: "Skills match", value: 40 },
@@ -353,7 +450,7 @@ const CreateJobWizard = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 rounded-2xl border border-charcoal/10 bg-cream/30 p-6">
                     <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Autonomous decisions</label>
                     <div className="space-y-4">
                       <div className="h-8 w-full rounded-full flex overflow-hidden border border-charcoal/5">
@@ -405,17 +502,29 @@ const CreateJobWizard = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-6 rounded-2xl border border-charcoal/10 bg-cream/30 p-6">
                     <label className="text-[10px] font-bold text-charcoal-muted uppercase tracking-widest block">Interview settings</label>
                     <div className="space-y-4">
-                      <div className="space-y-2">
+                      <div className="space-y-3 rounded-2xl border border-charcoal/10 bg-cream/30 p-4">
                         <div className="flex justify-between text-[11px] font-bold text-charcoal">
-                          <span>Number of questions</span>
-                          <span>8</span>
+                          <span>MCQ assessment questions</span>
+                          <span>{mcqQuestions}</span>
                         </div>
-                        <div className="h-1.5 w-full bg-cream rounded-full overflow-hidden">
-                          <div className="h-full bg-coral rounded-full w-[60%]" />
+                        <Slider value={[mcqQuestions]} onValueChange={(value) => setMcqQuestions(value[0])} min={5} max={20} step={1} />
+                      </div>
+                      <div className="space-y-3 rounded-2xl border border-charcoal/10 bg-cream/30 p-4">
+                        <div className="flex justify-between text-[11px] font-bold text-charcoal">
+                          <span>Video interview questions</span>
+                          <span>{videoQuestions}</span>
                         </div>
+                        <Slider value={[videoQuestions]} onValueChange={(value) => setVideoQuestions(value[0])} min={3} max={12} step={1} />
+                      </div>
+                      <div className="space-y-3 rounded-2xl border border-charcoal/10 bg-cream/30 p-4">
+                        <div className="flex justify-between text-[11px] font-bold text-charcoal">
+                          <span>Machine coding problems</span>
+                          <span>{codingQuestions}</span>
+                        </div>
+                        <Slider value={[codingQuestions]} onValueChange={(value) => setCodingQuestions(value[0])} min={1} max={4} step={1} />
                       </div>
                       <div className="space-y-1.5">
                         <span className="text-[11px] font-bold text-charcoal-muted block">Prep time / question</span>
@@ -439,11 +548,11 @@ const CreateJobWizard = () => {
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-semibold text-charcoal-muted">Skills MCQ test</span>
-                          <Switch />
+                          <Switch defaultChecked />
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-semibold text-charcoal-muted">Coding sandbox</span>
-                          <Switch />
+                          <Switch defaultChecked />
                         </div>
                       </div>
                     </div>

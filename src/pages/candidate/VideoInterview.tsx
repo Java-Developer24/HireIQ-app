@@ -205,14 +205,14 @@ const VideoInterview = () => {
 
               <div className="p-6 rounded-[24px] bg-white/5 border border-white/5 backdrop-blur-sm space-y-6">
                 <div className="space-y-1.5">
-                  <p className="text-xs font-bold text-white/80 uppercase tracking-widest">Next step</p>
-                  <p className="text-base font-semibold text-white">Machine coding round (takes about 45 minutes)</p>
+                  <p className="text-xs font-bold text-white/80 uppercase tracking-widest">Submission complete</p>
+                  <p className="text-base font-semibold text-white">Your interview answers are ready to submit.</p>
                 </div>
                 <button
                   onClick={() => navigate("/assessment-coding")}
                   className="h-14 w-full bg-[#2D5BFF] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-[#2D5BFF]/80 transition shadow-xl shadow-[#2D5BFF]/20"
                 >
-                  Continue to coding round <ArrowRight className="h-4 w-4" />
+                  Finish and continue with Machine coding round <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
             </div>

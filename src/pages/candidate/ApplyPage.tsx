@@ -1,66 +1,47 @@
 import { CandidateLayout } from "@/components/layout/CandidateLayout";
 import {
-  Briefcase,
   MapPin,
-  Clock,
-  Upload,
   Check,
   X,
   ArrowRight,
   Camera,
   CheckCircle2,
   Lock,
-  ArrowUpRight
+  ChevronLeft
 } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getJobById } from "@/lib/candidateFlow";
 
 const ApplyPage = () => {
-  const [submitted, setSubmitted] = useState(false);
-
-  if (submitted) {
-    return (
-      <CandidateLayout>
-        <div className="flex-1 flex items-center justify-center p-6 bg-white">
-          <div className="max-w-md w-full text-center space-y-6 animate-in zoom-in duration-500">
-            <div className="h-20 w-20 rounded-full bg-[#E5F9F1] flex items-center justify-center text-[#00CC88] mx-auto shadow-sm">
-              <CheckCircle2 className="h-10 w-10" />
-            </div>
-            <div className="space-y-2">
-              <h1 className="text-3xl font-display font-bold text-charcoal">Application received!</h1>
-              <p className="text-sm text-charcoal-muted leading-relaxed">
-                We've sent your video interview link to <span className="font-bold text-charcoal">priya@email.com</span>.
-              </p>
-            </div>
-            <div className="pt-4 space-y-4">
-              <button onClick={() => { localStorage.setItem("candidate_stage", "applied"); window.location.href = "/candidate/mailbox"; }} className="w-full h-12 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[hsl(var(--charcoal))]/10">
-                Proceed to Assessment <ArrowRight className="h-4 w-4" />
-              </button>
-              <p className="text-[11px] text-charcoal-muted/60">Check your inbox — including spam folder.</p>
-            </div>
-          </div>
-        </div>
-      </CandidateLayout>
-    );
-  }
+  const navigate = useNavigate();
+  const { jobId } = useParams();
+  const job = getJobById(jobId);
 
   return (
-    <CandidateLayout>
-      <div className="flex-1 overflow-auto bg-white">
+    <CandidateLayout className="bg-cream" backHref="/candidate/jobs" backLabel="Back to jobs">
+      <div className="flex-1 overflow-auto bg-cream">
         <div className="max-w-[680px] mx-auto py-12 px-6 space-y-12">
           {/* Hero */}
           <div className="space-y-6">
+            <button
+              onClick={() => navigate("/candidate/jobs")}
+              className="inline-flex items-center gap-2 text-sm font-bold text-charcoal-muted hover:text-charcoal transition"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Return to job postings
+            </button>
+
             <div className="space-y-4">
-              <h1 className="text-4xl font-display font-bold text-charcoal tracking-tight">Senior Backend Engineer</h1>
+              <h1 className="text-4xl font-display font-bold text-charcoal tracking-tight">{job.title}</h1>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-full bg-cream border border-charcoal/10 text-xs font-semibold text-charcoal-muted">Engineering</span>
-                <span className="px-3 py-1 rounded-full bg-[#E8EDFF] text-[#2D5BFF] text-xs font-bold uppercase tracking-wider">Senior</span>
-                <span className="px-3 py-1 rounded-full bg-cream border border-charcoal/10 text-xs font-semibold text-charcoal-muted">Remote</span>
-                <span className="px-3 py-1 rounded-full bg-cream border border-charcoal/10 text-xs font-semibold text-charcoal-muted">Full-time</span>
+                <span className="px-3 py-1 rounded-full bg-cream border border-charcoal/10 text-xs font-semibold text-charcoal-muted">{job.team}</span>
+                <span className="px-3 py-1 rounded-full bg-[#E8EDFF] text-[#2D5BFF] text-xs font-bold uppercase tracking-wider">{job.level}</span>
+                <span className="px-3 py-1 rounded-full bg-cream border border-charcoal/10 text-xs font-semibold text-charcoal-muted">{job.workMode}</span>
+                <span className="px-3 py-1 rounded-full bg-cream border border-charcoal/10 text-xs font-semibold text-charcoal-muted">{job.employmentType}</span>
               </div>
               <p className="text-sm font-medium text-charcoal-muted flex items-center gap-4">
-                <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4" /> Hyderabad, India</span>
-                <span className="flex items-center gap-1.5">₹18–24 LPA</span>
+                <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4" /> {job.location}</span>
+                <span className="flex items-center gap-1.5">{job.salary}</span>
               </p>
             </div>
             <div className="h-px bg-charcoal/5 w-full" />
@@ -74,7 +55,7 @@ const ApplyPage = () => {
                   { step: 1, label: "Apply", active: true },
                   { step: 2, label: "Assessment" },
                   { step: 3, label: "Video interview" },
-                  { step: 4, label: "Result" }
+                  { step: 4, label: "Coding" }
                 ].map((s) => (
                   <div key={s.step} className="relative z-10 flex flex-col items-center gap-2">
                     <div className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
@@ -90,13 +71,13 @@ const ApplyPage = () => {
               </div>
               <div className="space-y-4 pt-2">
                 <p className="text-xs text-charcoal-muted leading-relaxed font-medium">
-                  Takes about 20–25 minutes total · Your interview link will be valid for 7 days
+                  This role includes a staged candidate journey with mailbox updates after each round.
                 </p>
                 <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-charcoal/5">
                   <div className="h-8 w-8 rounded-lg bg-coral/5 flex items-center justify-center text-coral shrink-0">
                     <Camera className="h-4 w-4" />
                   </div>
-                  <p className="text-[11px] text-charcoal-muted font-medium">You'll need a camera and microphone for the video interview.</p>
+                  <p className="text-[11px] text-charcoal-muted font-medium">You will need a camera and microphone for device verification and the video round.</p>
                 </div>
               </div>
             </div>
@@ -164,7 +145,7 @@ const ApplyPage = () => {
               </div>
 
               <button
-                onClick={() => setSubmitted(true)}
+                onClick={() => navigate("/submission-done/application")}
                 className="w-full h-14 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-xl shadow-[hsl(var(--charcoal))]/10"
               >
                 Submit application

@@ -1,7 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Briefcase, Mail, Activity, LogOut, ChevronDown } from "lucide-react";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { HireIqLogo } from "@/components/HireIqLogo";
+import { getStoredCandidateStage, getVisibleMailboxMessages, getJobById } from "@/lib/candidateFlow";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,6 +36,13 @@ const SidebarItem = ({ Icon, label, path, badge }: { Icon: any; label: string; p
 
 export const CandidateDashboardLayout = ({ children, title }: { children: ReactNode; title: string }) => {
   const navigate = useNavigate();
+  const [mailCount, setMailCount] = useState(0);
+
+  useEffect(() => {
+    const stage = getStoredCandidateStage();
+    const messages = getVisibleMailboxMessages(stage, getJobById().title);
+    setMailCount(messages.length);
+  }, [title]);
 
   return (
     <div className="min-h-screen flex bg-cream font-sans">
@@ -47,7 +55,7 @@ export const CandidateDashboardLayout = ({ children, title }: { children: ReactN
         <div className="px-3 mt-4 mb-2 text-[10px] uppercase tracking-wider text-charcoal-muted font-bold">Candidate Portal</div>
 
         <SidebarItem Icon={Briefcase} label="Job Postings" path="/candidate/jobs" />
-        <SidebarItem Icon={Mail} label="Mailbox" path="/candidate/mailbox" badge="1" />
+        <SidebarItem Icon={Mail} label="Mailbox" path="/candidate/mailbox" badge={mailCount > 0 ? String(mailCount) : undefined} />
         <SidebarItem Icon={Activity} label="Application Tracking" path="/candidate/tracking" />
 
         <div className="flex-1" />

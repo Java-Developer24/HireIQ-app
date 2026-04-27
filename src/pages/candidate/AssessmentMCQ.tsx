@@ -2,12 +2,12 @@ import { CandidateLayout } from "@/components/layout/CandidateLayout";
 import {
   Clock,
   ArrowRight,
-  AlertTriangle,
-  ChevronRight
+  AlertTriangle
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { setStoredCandidateStage } from "@/lib/candidateFlow";
 
 const AssessmentMCQ = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -67,12 +67,13 @@ const AssessmentMCQ = () => {
       setCurrentQuestion(currentQuestion + 1);
       setSelected("");
     } else {
-      navigate("/submission-done");
+      setStoredCandidateStage("mcq_done");
+      navigate("/practice");
     }
   };
 
   return (
-    <CandidateLayout className="bg-[#F5F7FA]" showLogo={true}>
+    <CandidateLayout className="bg-cream" showLogo={true} backHref="/device-check/assessment" backLabel="Back to setup">
 
       {/* Warning Banner */}
       <div className="bg-amber-soft/50 border-b border-amber-warm/10 py-2 px-8 flex items-center justify-center gap-2">
@@ -131,7 +132,7 @@ const AssessmentMCQ = () => {
                  selected ? "bg-[hsl(var(--charcoal))] hover:bg-charcoal shadow-[hsl(var(--charcoal))]/10" : "bg-charcoal/10 cursor-not-allowed shadow-none"
                }`}
              >
-               {currentQuestion === questions.length - 1 ? "Complete Assessment" : "Next question"} <ArrowRight className="h-4 w-4" />
+               {currentQuestion === questions.length - 1 ? "Complete Assessment and Start with Video Interview" : "Next question"} <ArrowRight className="h-4 w-4" />
              </button>
              <p className="text-center text-[10px] text-charcoal-muted italic font-medium">
                You cannot return to previous questions.
