@@ -67,7 +67,7 @@ const AssessmentMCQ = () => {
       setCurrentQuestion(currentQuestion + 1);
       setSelected("");
     } else {
-      navigate("/candidate/submission-done");
+      navigate("/submission-done");
     }
   };
 

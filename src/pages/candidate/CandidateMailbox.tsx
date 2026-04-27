@@ -64,7 +64,7 @@ The HireIQ Recruiting Team`,
       preview: "Thank you for applying. Please complete this skills assessment to proceed.",
       date: "Oct 24, 9:00 AM",
       visible: true,
-      link: "/candidate/device-check?type=mcq",
+      link: "/device-check",
       content: `Hi John,
 
 Thank you for applying for the Senior Backend Engineer role at HireIQ Partner Solutions.

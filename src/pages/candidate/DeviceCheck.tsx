@@ -32,11 +32,11 @@ const DeviceCheck = () => {
 
   const handleContinue = () => {
     if (type === 'coding') {
-      navigate('/candidate/assessment-coding');
+      navigate('/assessment-coding');
     } else if (type === 'video') {
-      navigate('/candidate/video-interview');
+      navigate('/video-interview');
     } else {
-      navigate('/candidate/assessment-mcq');
+      navigate('/assessment-mcq');
     }
   };
 
