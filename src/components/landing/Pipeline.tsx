@@ -14,7 +14,7 @@ export const Pipeline = () => {
       <div className="container">
         <div className="max-w-[900px] mx-auto bg-white border border-charcoal/10 rounded-3xl p-8">
           <div className="text-center mb-8">
-            <div className="inline-block text-xs font-medium text-charcoal-muted uppercase tracking-wider">
+            <div className="inline-block text-lg font-medium text-charcoal-muted uppercase tracking-wider">
               // The autonomous pipeline //
             </div>
             <h2 className="mt-2 font-display font-bold text-3xl text-charcoal">
@@ -29,8 +29,8 @@ export const Pipeline = () => {
                   <div className="h-10 w-10 rounded-xl bg-coral text-amber flex items-center justify-center mb-2">
                     <s.icon className="h-5 w-5" />
                   </div>
-                  <div className="text-xs font-semibold text-charcoal leading-tight">{s.title}</div>
-                  <div className="text-[10px] text-charcoal-muted mt-1">{s.note}</div>
+                  <div className="text-lg font-semibold text-charcoal leading-tight">{s.title}</div>
+                  <div className="text-[12px] text-charcoal-muted mt-1">{s.note}</div>
                   {i < stages.length - 1 && (
                     <ArrowRight className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-coral/60 z-10" />
                   )}
@@ -39,7 +39,7 @@ export const Pipeline = () => {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-charcoal-muted bg-coral text-cream/90 rounded-full py-3 px-6">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-lg text-charcoal-muted bg-coral text-cream/90 rounded-full py-3 px-6">
             <span><b className="text-cream">48</b> applied</span>
             <span className="text-cream/50">·</span>
             <span><b className="text-cream">27</b> auto-rejected</span>

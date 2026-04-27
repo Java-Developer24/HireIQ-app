@@ -46,7 +46,7 @@ const PracticeQuestion = () => {
           <div className="flex items-center gap-2 text-xs font-bold text-charcoal-muted">
             <span className="text-[#00CC88]">Device check ✓</span>
             <div className="h-4 w-px bg-charcoal/10" />
-            <div className="px-2 py-1 bg-[#0D1829] text-white rounded-md text-[10px]">Practice</div>
+            <div className="px-2 py-1 bg-[hsl(var(--charcoal))] text-white rounded-md text-[10px]">Practice</div>
             <div className="h-4 w-px bg-charcoal/10" />
             <span>Interview (8 questions)</span>
           </div>
@@ -92,7 +92,7 @@ const PracticeQuestion = () => {
                         fill="transparent"
                         stroke="currentColor"
                         strokeWidth="8"
-                        className="text-[#0D1829] transition-all duration-1000"
+                        className="text-[hsl(var(--charcoal))] transition-all duration-1000"
                         strokeDasharray={402}
                         strokeDashoffset={402 - (402 * countdown / 30)}
                         strokeLinecap="round"
@@ -130,7 +130,7 @@ const PracticeQuestion = () => {
                     />
                     <style>{`.mirror { transform: scaleX(-1); }`}</style>
                     <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full z-10">
-                      <div className="h-2 w-2 rounded-full bg-[#FF4D4D] animate-pulse" />
+                      <div className="h-2 w-2 rounded-full bg-[hsl(var(--coral))] animate-pulse" />
                       <span className="text-[10px] font-bold text-white uppercase tracking-wider">REC</span>
                     </div>
                     <div className="absolute top-4 right-4 text-[10px] font-mono font-bold text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full z-10">
@@ -144,7 +144,7 @@ const PracticeQuestion = () => {
                       }
                       setState("playback");
                     }}
-                    className="h-14 px-8 bg-white border border-[#FF4D4D] text-[#FF4D4D] font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-[#FFE5E5] transition mx-auto"
+                    className="h-14 px-8 bg-white border border-[hsl(var(--coral))] text-[hsl(var(--coral))] font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-coral/10 transition mx-auto"
                   >
                     <StopCircle className="h-5 w-5" /> Stop recording
                   </button>
@@ -172,7 +172,7 @@ const PracticeQuestion = () => {
                       </button>
                       <Link
                         to="/assessment-mcq"
-                        className="h-14 px-10 rounded-2xl bg-[#0D1829] text-white font-bold flex items-center gap-2 hover:bg-charcoal transition shadow-xl shadow-[#0D1829]/10 w-full md:w-auto justify-center"
+                        className="h-14 px-10 rounded-2xl bg-[hsl(var(--charcoal))] text-white font-bold flex items-center gap-2 hover:bg-charcoal transition shadow-xl shadow-[hsl(var(--charcoal))]/10 w-full md:w-auto justify-center"
                       >
                         I'm ready — start assessment <ArrowRight className="h-4 w-4" />
                       </Link>

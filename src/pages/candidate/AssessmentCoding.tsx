@@ -114,7 +114,7 @@ const AssessmentCoding = () => {
                  <div className="flex items-center gap-2 text-[#00CC88]">
                     <CheckCircle2 className="h-3.5 w-3.5" /> Test 2 passed
                  </div>
-                 <div className="flex items-center gap-2 text-[#FF4D4D]">
+                 <div className="flex items-center gap-2 text-[hsl(var(--coral))]">
                     <XCircle className="h-3.5 w-3.5" /> Test 3 failed — Expected 100 rows, got 0 rows
                  </div>
               </div>

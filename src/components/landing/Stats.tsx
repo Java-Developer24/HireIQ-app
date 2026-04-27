@@ -13,7 +13,7 @@ export const Stats = () => (
         {stats.map((s) => (
           <div key={s.l} className="relative">
             <div className="font-display font-bold text-4xl lg:text-5xl text-amber">{s.v}</div>
-            <div className="mt-2 text-sm text-cream/70 max-w-[180px]">{s.l}</div>
+            <div className="mt-2 text-lg text-cream/70 max-w-[180px]">{s.l}</div>
           </div>
         ))}
       </div>

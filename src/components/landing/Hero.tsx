@@ -8,12 +8,12 @@ const FloatingCard = ({
     className={`hidden lg:flex absolute top-32 ${side === "left" ? "left-8" : "right-8"} items-center gap-3 bg-white border border-charcoal/10 rounded-2xl pl-2 pr-5 py-2 shadow-sm animate-float-slow`}
     style={{ animationDelay: delay }}
   >
-    <div className="h-9 w-9 rounded-full bg-coral text-cream flex items-center justify-center text-xs font-semibold">
+    <div className="h-9 w-9 rounded-full bg-coral text-cream flex items-center justify-center text-lg font-semibold">
       {name.split(" ").map(n => n[0]).join("")}
     </div>
     <div>
-      <div className="text-xs font-semibold text-charcoal leading-tight">{name}</div>
-      <div className="text-[11px] text-charcoal-muted">{role}</div>
+      <div className="text-lg font-semibold text-charcoal leading-tight">{name}</div>
+      <div className="text-[13px] text-charcoal-muted">{role}</div>
     </div>
   </div>
 );
@@ -29,7 +29,7 @@ export const Hero = () => {
 
       <div className="container relative">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-charcoal/15 bg-white/60 text-xs text-charcoal-muted">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-charcoal/15 bg-white/60 text-lg text-charcoal-muted">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-amber animate-pulse-dot" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-amber" />
@@ -44,7 +44,7 @@ export const Hero = () => {
             </span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-charcoal-muted max-w-2xl">
+          <p className="mt-6 text-lg sm:text-lg text-charcoal-muted max-w-2xl">
             HireIQ screens every resume, runs the video interview, scores every answer,
             and shortlists the best candidates — fully autonomously. You just review the results.
           </p>
@@ -61,7 +61,7 @@ export const Hero = () => {
             </button>
           </div>
 
-          <p className="mt-4 text-xs text-charcoal-muted">
+          <p className="mt-4 text-lg text-charcoal-muted">
             No credit card required · Setup in under 10 minutes
           </p>
         </div>

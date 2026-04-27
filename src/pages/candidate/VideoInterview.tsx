@@ -141,7 +141,7 @@ const VideoInterview = () => {
                 <style>{`.mirror { transform: scaleX(-1); }`}</style>
 
                 <div className="absolute top-6 left-6 flex items-center gap-2.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                  <div className="h-2 w-2 rounded-full bg-[#FF4D4D] animate-pulse" />
+                  <div className="h-2 w-2 rounded-full bg-[hsl(var(--coral))] animate-pulse" />
                   <span className="text-[11px] font-bold text-white uppercase tracking-wider">Recording</span>
                 </div>
 
@@ -153,7 +153,7 @@ const VideoInterview = () => {
 
                 {/* Progress bar at bottom of camera */}
                 <div className="absolute bottom-0 inset-x-0 h-1.5 bg-white/10">
-                   <div className="h-full bg-[#FF4D4D] w-[90%] transition-all duration-1000" />
+                   <div className="h-full bg-[hsl(var(--coral))] w-[90%] transition-all duration-1000" />
                 </div>
              </div>
 

@@ -33,7 +33,7 @@ const ApplyPage = () => {
               </p>
             </div>
             <div className="pt-4 space-y-4">
-              <Link to="/device-check" className="w-full h-12 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[#0D1829]/10">
+              <Link to="/device-check" className="w-full h-12 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[hsl(var(--charcoal))]/10">
                 Proceed to Assessment <ArrowRight className="h-4 w-4" />
               </Link>
               <p className="text-[11px] text-charcoal-muted/60">Check your inbox — including spam folder.</p>
@@ -78,7 +78,7 @@ const ApplyPage = () => {
                 ].map((s) => (
                   <div key={s.step} className="relative z-10 flex flex-col items-center gap-2">
                     <div className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                      s.active ? "bg-[#0D1829] text-white shadow-sm" : "bg-white border border-charcoal/10 text-charcoal-muted"
+                      s.active ? "bg-[hsl(var(--charcoal))] text-white shadow-sm" : "bg-white border border-charcoal/10 text-charcoal-muted"
                     }`}>
                       {s.step}
                     </div>
@@ -136,7 +136,7 @@ const ApplyPage = () => {
                       <p className="text-[10px] text-charcoal-muted">248KB · Ready to upload</p>
                     </div>
                   </div>
-                  <X className="h-4 w-4 text-charcoal-muted hover:text-[#FF4D4D] transition" />
+                  <X className="h-4 w-4 text-charcoal-muted hover:text-[hsl(var(--coral))] transition" />
                 </div>
               </div>
 
@@ -155,7 +155,7 @@ const ApplyPage = () => {
               </div>
 
               <div className="flex items-start gap-3 pt-2">
-                <div className="h-5 w-5 rounded border border-charcoal/20 bg-[#0D1829] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="h-5 w-5 rounded border border-charcoal/20 bg-[hsl(var(--charcoal))] flex items-center justify-center shrink-0 mt-0.5">
                   <Check className="h-3.5 w-3.5 text-white" />
                 </div>
                 <p className="text-[12px] text-charcoal-muted leading-snug">
@@ -165,7 +165,7 @@ const ApplyPage = () => {
 
               <button
                 onClick={() => setSubmitted(true)}
-                className="w-full h-14 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-xl shadow-[#0D1829]/10"
+                className="w-full h-14 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-xl shadow-[hsl(var(--charcoal))]/10"
               >
                 Submit application
               </button>

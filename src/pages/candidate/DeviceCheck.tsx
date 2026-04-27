@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const CheckRow = ({ status, label, sublabel }: { status: "success" | "error"; label: string; sublabel: string }) => (
   <div className="flex items-center gap-4 group">
     <div className={`h-10 w-10 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-      status === "success" ? "bg-[#E5F9F1] text-[#00CC88]" : "bg-[#FFE5E5] text-[#FF4D4D]"
+      status === "success" ? "bg-[#E5F9F1] text-[#00CC88]" : "bg-coral/10 text-[hsl(var(--coral))]"
     }`}>
       {status === "success" ? <CheckCircle2 className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}
     </div>
@@ -40,7 +40,7 @@ const DeviceCheck = () => {
               ].map((s, i) => (
                 <div key={s.label} className="flex items-center">
                   <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                    s.active ? "bg-[#0D1829] text-white" : "bg-charcoal/5 text-charcoal-muted"
+                    s.active ? "bg-[hsl(var(--charcoal))] text-white" : "bg-charcoal/5 text-charcoal-muted"
                   }`}>
                     {s.label}
                   </div>
@@ -112,7 +112,7 @@ const DeviceCheck = () => {
           </div>
 
           <div className="space-y-4">
-            <Link to="/practice" className="w-full h-12 bg-[#0D1829] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[#0D1829]/10">
+            <Link to="/practice" className="w-full h-12 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[hsl(var(--charcoal))]/10">
               Continue to practice round <ArrowRight className="h-4 w-4" />
             </Link>
             <button className="w-full text-xs font-bold text-charcoal-muted hover:text-charcoal transition">
