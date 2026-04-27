@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +18,11 @@ import ReviewQueue from "./pages/recruiter/ReviewQueue.tsx";
 import Settings from "./pages/recruiter/Settings.tsx";
 
 // Candidate Pages
+import CandidateLanding from "./pages/candidate/CandidateLanding.tsx";
+import CandidateLogin from "./pages/candidate/CandidateLogin.tsx";
+import CandidateJobs from "./pages/candidate/CandidateJobs.tsx";
+import CandidateMailbox from "./pages/candidate/CandidateMailbox.tsx";
+import ApplicationTracking from "./pages/candidate/ApplicationTracking.tsx";
 import ApplyPage from "./pages/candidate/ApplyPage.tsx";
 import DeviceCheck from "./pages/candidate/DeviceCheck.tsx";
 import PracticeQuestion from "./pages/candidate/PracticeQuestion.tsx";
@@ -50,6 +55,13 @@ const App = () => (
           <Route path="/settings" element={<Settings />} />
 
           {/* Candidate Routes */}
+          <Route path="/candidate/landing" element={<CandidateLanding />} />
+          <Route path="/candidate/login" element={<CandidateLogin />} />
+          <Route path="/candidate/dashboard" element={<Navigate to="/candidate/jobs" replace />} />
+          <Route path="/candidate/jobs" element={<CandidateJobs />} />
+          <Route path="/candidate/mailbox" element={<CandidateMailbox />} />
+          <Route path="/candidate/tracking" element={<ApplicationTracking />} />
+
           <Route path="/apply/:jobId" element={<ApplyPage />} />
           <Route path="/device-check" element={<DeviceCheck />} />
           <Route path="/practice" element={<PracticeQuestion />} />

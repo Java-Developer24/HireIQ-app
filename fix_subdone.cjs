@@ -1,4 +1,12 @@
-import { CandidateLayout } from "@/components/layout/CandidateLayout";
+const fs = require('fs');
+
+let content = fs.readFileSync('src/pages/candidate/SubmissionDone.tsx', 'utf-8');
+
+// The error says "Unexpected closing "div" tag does not match opening "CandidateLayout" tag"
+// Let's count divs and see if there is an extra one due to my regex replacement
+
+// Clean it up by writing it cleanly:
+content = `import { CandidateLayout } from "@/components/layout/CandidateLayout";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import {
   CheckCircle2,
@@ -120,3 +128,5 @@ const SubmissionDone = () => {
 };
 
 export default SubmissionDone;
+`;
+fs.writeFileSync('src/pages/candidate/SubmissionDone.tsx', content);

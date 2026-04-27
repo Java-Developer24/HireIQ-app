@@ -9,7 +9,7 @@ import {
   Info,
   AlertCircle
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 
 const CheckRow = ({ status, label, sublabel }: { status: "success" | "error"; label: string; sublabel: string }) => (
   <div className="flex items-center gap-4 group">
@@ -26,6 +26,20 @@ const CheckRow = ({ status, label, sublabel }: { status: "success" | "error"; la
 );
 
 const DeviceCheck = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const type = searchParams.get('type') || 'mcq';
+
+  const handleContinue = () => {
+    if (type === 'coding') {
+      navigate('/candidate/assessment-coding');
+    } else if (type === 'video') {
+      navigate('/candidate/video-interview');
+    } else {
+      navigate('/candidate/assessment-mcq');
+    }
+  };
+
   return (
     <CandidateLayout className="bg-[#F5F7FA]">
       <div className="flex-1 flex items-center justify-center p-6">
@@ -112,9 +126,9 @@ const DeviceCheck = () => {
           </div>
 
           <div className="space-y-4">
-            <Link to="/practice" className="w-full h-12 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[hsl(var(--charcoal))]/10">
+            <button onClick={handleContinue} className="w-full h-12 bg-[hsl(var(--charcoal))] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-charcoal transition shadow-lg shadow-[hsl(var(--charcoal))]/10">
               Continue to practice round <ArrowRight className="h-4 w-4" />
-            </Link>
+            </button>
             <button className="w-full text-xs font-bold text-charcoal-muted hover:text-charcoal transition">
               Having trouble? Contact support
             </button>
